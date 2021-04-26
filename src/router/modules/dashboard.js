@@ -6,7 +6,7 @@ const dashboardRouter = [{
         component: () => import('@/views/pages/Dashboard'),
         name: 'Dashboard',
         meta: {
-            isAuth: true
+            isAuth: false
         },
     }, ],
 }]

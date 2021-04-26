@@ -1,13 +1,8 @@
-/**
- * anything that relates to DOM
- */
 export default {
   namespaced: true,
+  
   state: {
-    windowWidth: 0,
-    /**
-     * breakpoint constants
-     */
+    windowWidth: 0, 
     widthExtraSmall: 320,
     widthSmall: 640,
     widthTablet: 1024

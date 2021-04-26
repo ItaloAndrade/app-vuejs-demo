@@ -1,11 +1,11 @@
-import auth from './auth'
 import user from './user'
 import dom from './dom'
-import toast from './toast'
+import snackbar from './snackbar'
+import drawer from './drawer'
 
 export default {
-  auth,
   user,
   dom,
-  toast
+  snackbar,
+  drawer
 }

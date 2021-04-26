@@ -1,17 +1,22 @@
 <template>
-   <router-view />
+  <v-app>
+    <v-main>
+      <Snackbar />
+      <router-view />
+    </v-main>
+  </v-app>
 </template>
 
-<script> 
+<script>
+  export default {
+    name: 'App',
 
-export default {
-  name: 'App',
+    components: {
+      Snackbar: () => import('@/views/components/Snackbar'),
+    },
 
-  components: { 
-  },
-
-  data: () => ({
-    //
-  }),
-};
+    data: () => ({
+      //
+    }),
+  };
 </script>

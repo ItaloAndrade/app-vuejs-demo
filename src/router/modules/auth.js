@@ -6,7 +6,7 @@ const authRouter = [
         component: () => import('@/views/pages/SignIn'),
       },
       {
-        path: 'signUp',
+        path: '/signUp',
         alias: '/register',
         name: 'SignUp',
         component: () => import('@/views/pages/SignUp'),

@@ -1,44 +1,53 @@
 import $store from '../store'
-import { AuthService } from '@/services/auth.service'
+import {
+  AuthService
+} from '@/services/auth.service'
 
-/**
- * Current user state initialization
- * @WARN Must be always first in middleware chain
- */
-export async function initCurrentUserStateMiddleware (to, from, next) {
+import NProgress from 'nprogress'; // progress bar
+import 'nprogress/nprogress.css'; // progress bar style
+
+NProgress.configure({
+  showSpinner: false
+}); // NProgress Configuration
+
+ 
+export async function initCurrentUserStateMiddleware(to, from, next) {
+  
+  NProgress.start();
   const currentUserId = $store.state.user.currentUser.id
-  console.log(AuthService.hasRefreshToken())
-  if (AuthService.hasRefreshToken() && !currentUserId) {
-    try {
-      await AuthService.debounceRefreshTokens()
-      await $store.dispatch('user/getCurrent')
+  if (AuthService.hasToken() && !currentUserId) {
+    try {  
+      await $store.dispatch('user/getCurrent');
       next()
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
   } else {
-    next()
+    next();
   }
 }
 
 /**
  * Check access permission to auth routes
  */
-export function checkAccessMiddleware (to, from, next) {
+export function checkAccessMiddleware(to, from, next) {
   const currentUserId = $store.state.user.currentUser.id
   const isAuthRoute = to.matched.some(item => item.meta.isAuth)
 
-  console.log(to);
-  
-  console.log(currentUserId);
   if (isAuthRoute && currentUserId) return next()
-  if (isAuthRoute) return next({ name: 'Home' })
-  next()
+  if (isAuthRoute) return next({name: 'login'});
+  next();
 }
 
-export function setPageTitleMiddleware (to, from, next) {
+export function setPageTitleMiddleware(to, from, next) {
   const pageTitle = to.matched.find(item => item.meta.title)
 
   if (pageTitle) window.document.title = pageTitle.meta.title
-  next()
+  next();
+}
+
+export function closeNProgress() {
+  setTimeout(() => {
+    NProgress.done();
+  }, 500);
 }
