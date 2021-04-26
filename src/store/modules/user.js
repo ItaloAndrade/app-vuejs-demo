@@ -7,7 +7,6 @@ import {
 
 export default {
   namespaced: true,
-
   state: {
     currentUser: {
       id: '',
@@ -19,7 +18,6 @@ export default {
 
   mutations: {
     SET_CURRENT_USER(state, currentUserData) {
-       debugger
       state.id = currentUserData._id;
       state.role = currentUserData.role;
       state.name = currentUserData.name;
@@ -33,7 +31,6 @@ export default {
     getCurrent({
       commit
     }) {
-
       return UsersService.getCurrent()
         .then(user => commit('SET_CURRENT_USER',user))
         .catch(error => commit('snackbar/SHOW_MESSAGE', {

@@ -15,7 +15,7 @@
                   <v-text-field type="password" label="Senha" />
                 </v-col>
                 <v-col cols="6" md="6" class="text-left">
-                  <v-btn to="/dashboard" color="success">Login</v-btn>
+                  <v-btn @click="op" color="success">Login</v-btn>
                 </v-col>
                 <v-col cols="6" md="6" class="text-right">
                   <h4>Você não tem uma conta
@@ -30,18 +30,30 @@
     </v-row>
   </v-container>
 </template>
+<script> 
 
-<script>
-  export default {
+ 
+import { mapActions } from "vuex";
+export default {
+
+ 
     components: {
       BaseMaterialCard: () => import('@/views/components/MaterialCard'),
     },
+
     name: "SignIn",
+    methods: {
+      ...mapActions( {'showAlert': 'user/getCurrent'}),
+     
+    op(){
+      this.showAlert();
+    }
+    },
     created() {
       this.$store.subscribe((mutation, state) => {
-       
+
         if (mutation.type === "user/SET_CURRENT_USER") {
-          console.log(state);
+          console.log(state.user.email);
         }
       });
     }
