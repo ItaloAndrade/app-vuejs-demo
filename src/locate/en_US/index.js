@@ -26,9 +26,17 @@ export default {
     titleUn: 'Sing Un Form',
     singIn: 'Sing in',
     singUp: 'Sing up',
-    email: 'Email',
-    password: 'Password',
+    email: 'E-mail',
+    name: 'Nome',
+    password: 'Senha',
     confirm: 'Confirm',
+  },
+  register: { 
+    email: 'E-mail',
+    name: 'Nome',
+    password: 'Senha',
+    registe: 'Cadastre-se',
+    back: 'Voltar'
   },
   errors: {
     whoops: 'Whoops',

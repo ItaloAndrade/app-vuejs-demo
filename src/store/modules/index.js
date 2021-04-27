@@ -1,4 +1,4 @@
-import user from './user'
+import user from './auth'
 import dom from './dom'
 import snackbar from './snackbar'
 import drawer from './drawer'

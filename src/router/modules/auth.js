@@ -4,6 +4,7 @@ const authRouter = [
         alias: '/login',
         name: 'SignIn',
         component: () => import('@/views/pages/SignIn'),
+        meta: { title: ` Login | Marvel` }
       },
       {
         path: '/signUp',
@@ -11,6 +12,7 @@ const authRouter = [
         name: 'SignUp',
         component: () => import('@/views/pages/SignUp'),
         hidden: true,
+        meta: { title: ` Registro | Marvel` }
       },
 ]
 

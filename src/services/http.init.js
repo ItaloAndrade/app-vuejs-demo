@@ -11,9 +11,7 @@ export class Http {
     return this.init();
   }
 
-  init() {  
-    // eslint-disable-next-line no-debugger
-    debugger
+  init() {   
     if (this.isAuth && AuthService.hasToken()) {
       this.instance.interceptors.request.use(request => {  
         request.headers.authorization =`Bearer ${AuthService.getToken()}`;

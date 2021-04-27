@@ -10,17 +10,16 @@ NProgress.configure({
   showSpinner: false
 }); // NProgress Configuration
 
- 
+
 export async function initCurrentUserStateMiddleware(to, from, next) {
-  
-  NProgress.start();
-  const currentUserId = $store.state.user.currentUser.id
-  if (AuthService.hasToken() && !currentUserId) {
-    try {  
-      await $store.dispatch('user/getCurrent');
+
+  NProgress.start(); 
+  if (AuthService.hasToken() && !$store.getters.id) {
+    try { 
+      await $store.dispatch('user/refreshInfoUser');
       next()
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.warn('Middleware', err);
     }
   } else {
     next();
@@ -30,18 +29,19 @@ export async function initCurrentUserStateMiddleware(to, from, next) {
 /**
  * Check access permission to auth routes
  */
-export function checkAccessMiddleware(to, from, next) {
-  const currentUserId = $store.state.user.currentUser.id
-  const isAuthRoute = to.matched.some(item => item.meta.isAuth)
+export function checkAccessMiddleware(to, from, next) { 
 
-  if (isAuthRoute && currentUserId) return next()
-  if (isAuthRoute) return next({name: 'login'});
+  const isAuthRoute = to.matched.some(item => item.meta.isAuth)
+  
+  if (isAuthRoute && $store.getters.id) return next()
+  if (isAuthRoute) return next({
+    name: 'SignIn'
+  });
   next();
 }
 
 export function setPageTitleMiddleware(to, from, next) {
   const pageTitle = to.matched.find(item => item.meta.title)
-
   if (pageTitle) window.document.title = pageTitle.meta.title
   next();
 }

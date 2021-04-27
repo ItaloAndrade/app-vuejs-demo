@@ -29,6 +29,7 @@ export default {
     singIn: 'Sing in',
     singUp: 'Sing up',
     email: 'Email',
+    name: 'Nome',
     password: 'Password',
     confirm: 'Confirm',
   },

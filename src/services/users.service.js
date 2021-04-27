@@ -1,19 +1,31 @@
-import { BaseService } from './base.service'
-import { ErrorWrapper, ResponseWrapper } from './util' 
- 
-import { API_URL } from '../.env'
+import {BaseService} from './base.service'
+import {
+  ErrorWrapper,
+  ResponseWrapper
+} from './util'
+
+import {API_URL} from '../.env';
+import {AuthService}
+from '@/services/auth.service';
 
 export class UsersService extends BaseService {
-  static get entity () {
+  static get entity() {
     return `${API_URL}/user`;
-  } 
+  }
 
-  static async getCurrent () {
-    try { 
-      const response = await this.request({ auth: true }).get(`${this.entity}/current`)  
-      const user =  new ResponseWrapper(response, response.data.data);
-      return user.data;
-    } catch (error) { 
+  static async getCurrent() {
+    try {
+      
+      const response = await this.request({
+        auth: true
+      }).get(`${this.entity}/current`)
+      let user = new ResponseWrapper(response, response.data.data);
+      user = {
+        ...user.data,
+        ...{token: AuthService.getToken() }
+      } 
+      return user;
+    } catch (error) {
       const message = error.response.data ? error.response.data.error : error.response.statusText
       throw new ErrorWrapper(error, message)
     }

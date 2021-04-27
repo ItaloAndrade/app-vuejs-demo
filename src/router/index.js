@@ -27,9 +27,9 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach(initCurrentUserStateMiddleware);/*caso api tenh* */
+router.beforeEach(initCurrentUserStateMiddleware);/*caso usuario tenha token valido e o tenha perdido o estado do vuex , o mesmo é restabelecido * */
 router.beforeEach(checkAccessMiddleware); /** verifica se usuario tem acesso a pagina com base no token que está  no store */
-router.beforeEach(setPageTitleMiddleware); /** set titulo da pagina */
+router.beforeEach(setPageTitleMiddleware); /** set titulo da pagina de acordo com meta */
 router.afterEach(closeNProgress);
 
 export default router

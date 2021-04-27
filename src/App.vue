@@ -10,13 +10,9 @@
 <script>
   export default {
     name: 'App',
-
     components: {
       Snackbar: () => import('@/views/components/Snackbar'),
     },
-
-    data: () => ({
-      //
-    }),
+    data: () => ({}),
   };
 </script>

@@ -62,9 +62,7 @@ export class ResponseWrapper {
  * @param {String} [message] - custom message to display
  */
 export class ErrorWrapper extends Error {
-  constructor (error, message) {
-     // eslint-disable-next-line no-debugger
-     debugger
+  constructor (error, message) { 
     super()
     this.success = error.response ? error.response.data.success : false
     this.meta = error.response ? error.response.data.meta : false

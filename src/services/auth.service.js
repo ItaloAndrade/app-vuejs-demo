@@ -1,61 +1,87 @@
-import axios from 'axios' 
-import $store from '../store'
-import $router from '../router'
+import axios from 'axios'  
+
+import { API_URL } from '../.env';
+import { ErrorWrapper, ResponseWrapper } from './util' ;
 
 export class AuthService {
+
+  static get entity () {
+    return `${API_URL}/auth`;
+  } 
 
   static async login({
     email,
     password
   }) {
-    try {
-      const response = await axios.post(`${process.env.VUE_APP_ROOT_API}/api/auth/login`, {
+    try { 
+      const response = await axios.post(`${this.entity}/login`, {
         email,
         password
-      }, {
-        withCredentials: true /** save cookie  */
       });
-
-     this._setAuthData({
-        accessToken: response.token,
-        user: response.data
-      });
-
-    } catch (error) {
-      throw new Error(error);
+      AuthService.setToken(response.data.token); 
+      const user = {
+        ...response.data.data,
+        ...{
+          token: response.token,
+          logout: false
+        }
+      }
+      return  new ResponseWrapper(response, user); 
+    } catch (error) { 
+      const message = error.response.data ? error.response.data.error : error.response.statusText
+      throw new ErrorWrapper(error, message)
     }
   }
 
-  static async logout() {
-    try {
-      this._resetAuthData();
-      $router.push({
-        name: 'login'
-      }).catch(() => {});
+  static async register({
+    email, 
+    name,  
+    role,  
+    status, 
+    password, 
+    passwordConfirm
+  }) {
+    try { 
+      const response = await axios.post(`${this.entity}/register`, {
+        email, 
+        name,  
+        role,  
+        status, 
+        password, 
+        passwordConfirm
+      });
+       
+      AuthService.setToken(response.data.token); 
+      const user = {
+        ...response.data.data,
+        ...{
+          token: response.token,
+          logout: false
+        }
+      }
+      return  new ResponseWrapper(response, user); 
+    } catch (error) { 
+      const message = error.response.data ? error.response.data.error : error.response.statusText
+      throw new ErrorWrapper(error, message)
+    }
+  }
+
+
+  static  logout() {
+    try { 
+      AuthService.setToken(null); 
     } catch (error) {
       throw new Error(error);
     }
   }
  
   static hasToken = () =>
-    Boolean(localStorage.getItem('marvelToken') !== undefined &&
-      localStorage.getItem('marvelToken') !== null)
+    Boolean(localStorage.getItem('marvelToken') !== 'undefined' &&
+    !!localStorage.getItem('marvelToken'))
 
   static setToken = (status) => localStorage.setItem('marvelToken', status)
 
   static getToken = () =>  String(localStorage.getItem('marvelToken'))
 
-  _resetAuthData = () => { 
-    $store.dispatch('getCurrent'); 
-    AuthService.setToken(null);
-    AuthService.setBearer('');
-  }
-
-   _setAuthData = (accessToken, user) => {
-
-    $store.dispatch('getCurrent', user);
-    AuthService.setToken(accessToken);
-    AuthService.setBearer(accessToken);
-
-   }
+   
 }
