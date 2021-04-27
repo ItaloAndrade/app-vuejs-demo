@@ -12,11 +12,13 @@ export class Http {
   }
 
   init() {  
-    if (this.isAuth) {
+    // eslint-disable-next-line no-debugger
+    debugger
+    if (this.isAuth && AuthService.hasToken()) {
       this.instance.interceptors.request.use(request => {  
         request.headers.authorization =`Bearer ${AuthService.getToken()}`;
         return request;
-      }, error => {
+      }, error => { 
         return Promise.reject(error);
       });
     }
