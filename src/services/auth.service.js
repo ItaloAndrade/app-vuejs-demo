@@ -2,6 +2,7 @@ import axios from 'axios'
 
 import { API_URL } from '../.env';
 import { ErrorWrapper, ResponseWrapper } from './util' ;
+import $router from '@/router';
 
 export class AuthService {
 
@@ -25,7 +26,12 @@ export class AuthService {
           token: response.token,
           logout: false
         }
+
       }
+      $router.push({
+        name: 'Dashboard'
+        , replace: true
+      }).catch(() => {});
       return  new ResponseWrapper(response, user); 
     } catch (error) { 
       const message = error.response.data ? error.response.data.error : error.response.statusText
@@ -59,6 +65,10 @@ export class AuthService {
           logout: false
         }
       }
+      $router.push({
+        name: 'Dashboard'
+        , replace: true
+      }).catch(() => {});
       return  new ResponseWrapper(response, user); 
     } catch (error) { 
       const message = error.response.data ? error.response.data.error : error.response.statusText
@@ -70,6 +80,10 @@ export class AuthService {
   static  logout() {
     try { 
       AuthService.setToken(null); 
+      $router.push({
+        name: 'SignIn',
+         replace: true
+      }).catch(() => {});
     } catch (error) {
       throw new Error(error);
     }

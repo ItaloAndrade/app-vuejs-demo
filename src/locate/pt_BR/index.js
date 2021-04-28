@@ -1,9 +1,15 @@
-import route from './route.js';
-import components from '@/demo/locale/en_US/components';
 
 export default {
-  route,
-  components,
+  auth: {
+    email: 'E-mail',
+    name: 'Nome',
+    password: 'Senhas',
+    confirm: 'Confirme',
+    labelgoregister: 'Você não tem uma conta',
+    goregister: 'Cadastre-se',
+    btnregister: 'Criar Conta',
+    back: 'Voltar',
+  }, 
   toolbar: {
     appname: 'Application',
     settings: 'Settings',
@@ -23,15 +29,13 @@ export default {
     settingsBtn: 'Setting btn',
     footer: 'Footer',
   },
-  login: {
-    titleIn: 'Sing In Form',
-    titleUn: 'Sing Un Form',
-    singIn: 'Sing in',
-    singUp: 'Sing up',
-    email: 'Email',
+ 
+  register: { 
+    email: 'E-mail',
     name: 'Nome',
-    password: 'Password',
-    confirm: 'Confirm',
+    password: 'Senha',
+    registe: 'Cadastre-se',
+    back: 'Voltar'
   },
   errors: {
     whoops: 'Whoops',

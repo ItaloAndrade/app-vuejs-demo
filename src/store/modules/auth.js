@@ -3,8 +3,9 @@ import {
 } from '@/services/users.service';
 import {
   AuthService
-} from '@/services/auth.service';
-import {$router} from '@/router'
+} from '@/services/auth.service'; 
+
+
 
 export default {
   namespaced: true,
@@ -46,17 +47,13 @@ export default {
       commit,
     }, payload) => {
       try {
-        const response = await AuthService.login({
+        const user = await AuthService.login({
           email: payload.email.trim(),
           password: payload.password
         });
 
-       
         await commit('SET_CURRENT_USER', user);
-        $router.push({
-          name: 'Dashboard'
-          , replace: true
-        }).catch(() => {});
+        
 
       } catch (err) {
         console.warn('[vuex.auth] Login', err);
@@ -98,10 +95,7 @@ export default {
       try {
         AuthService.logout(); 
         await commit('SET_USER_INFO', {});
-        $router.push({
-          name: 'SignIn',
-           replace: true
-        }).catch(() => {});
+      
       } catch (err) {
         console.warn('[vuex.user] LogOut', err);
       }
@@ -133,10 +127,7 @@ export default {
           }
         }
         await commit('SET_CURRENT_USER', user);
-        $router.push({
-          name: 'Dashboard'
-          , replace: true
-        }).catch(() => {});
+       
       } catch (err) {
         console.warn('[vuex.auth] Login', err);
         commit('snackbar/SHOW_MESSAGE', {

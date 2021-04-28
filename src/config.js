@@ -34,7 +34,7 @@ module.exports = {
    * @description Default application settings.
    */
   settings: {
-    locale: 'en',
+    locale: 'pt',
     dense: true,
     footer: false,
     navbar: {

@@ -2,7 +2,7 @@
   <v-card>
     <div class="d-flex flex-row">
       <v-avatar v-if="avatar" :size="size" class="mx-auto v-card-material-avatar elevation-20">
-        <v-img max-height="120" max-width="100" :src="avatar" />
+        <v-img  max-width="85" :src="avatar" />
       </v-avatar>
     </div>
     <slot />
