@@ -13,9 +13,9 @@ NProgress.configure({
 
 export async function initCurrentUserStateMiddleware(to, from, next) {
 
-  NProgress.start(); 
-  if (AuthService.hasToken() && !$store.getters.id) {
-    try { 
+  NProgress.start();
+  if (AuthService.hasToken() && !$store.getters["user/id"]) {
+    try {
       await $store.dispatch('user/refreshInfoUser');
       next()
     } catch (err) {
@@ -29,15 +29,18 @@ export async function initCurrentUserStateMiddleware(to, from, next) {
 /**
  * Check access permission to auth routes
  */
-export function checkAccessMiddleware(to, from, next) { 
+export function checkAccessMiddleware(to, from, next) {
 
   const isAuthRoute = to.matched.some(item => item.meta.isAuth)
-  
-  if (isAuthRoute && $store.getters.id) return next()
-  if (isAuthRoute) return next({
-    name: 'SignIn'
-  });
-  next();
+
+  if (!isAuthRoute) next();
+  else if (!$store.getters["user/id"]) {
+    next({
+      name: 'SignIn'
+    });
+  } else {
+    next();
+  }
 }
 
 export function setPageTitleMiddleware(to, from, next) {

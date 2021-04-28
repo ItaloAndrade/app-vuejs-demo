@@ -6,7 +6,7 @@ import {
 
 import {API_URL} from '../.env';
 import {AuthService}
-from '@/services/auth.service';
+from '@/services/auth.service'; 
 
 export class UsersService extends BaseService {
   static get entity() {
@@ -23,7 +23,9 @@ export class UsersService extends BaseService {
       user = {
         ...user.data,
         ...{token: AuthService.getToken() }
-      } 
+      }  
+      
+      console.warn('[user.service] getCurrent', user);
       return user;
     } catch (error) {
       const message = error.response.data ? error.response.data.error : error.response.statusText

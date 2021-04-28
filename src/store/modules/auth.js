@@ -10,7 +10,7 @@ import {
 export default {
   namespaced: true,
   state: {
-    currentUser: {
+    user: {
       id: '',
       role: '',
       name: '',
@@ -18,26 +18,27 @@ export default {
       token: '',
     }
   },
-  getters: {
-    name: (state) => state.name,
-    email: (state) => state.email,
-    id: (state) => state.id
+  getters: { 
+    name (state) {return state.user.name} ,
+    email  (state)  {return state.user.email} ,
+    id (state) {return state.user.id} 
   },
   mutations: {
     SET_CURRENT_USER(state, payload) {
-
+ // eslint-disable-next-line no-debugger
+ debugger
       if (payload.logout) {
-        state.id = '';
-        state.role = '';
-        state.name = '';
-        state.email = '';
-        state.token = '';
+        state.user.id = '';
+        state.user.role = '';
+        state.user.name = '';
+        state.user.email = '';
+        state.user.token = '';
       } else {
-        state.id = payload._id;
-        state.role = payload.role;
-        state.name = payload.name;
-        state.email = payload.email;
-        state.token = payload.token;
+        state.user.id = payload._id;
+        state.user.role = payload.role;
+        state.user.name = payload.name;
+        state.user.email = payload.email;
+        state.user.token = payload.token;
       }
     },
 
@@ -53,9 +54,9 @@ export default {
         });
 
         await commit('SET_CURRENT_USER', user);
-        
-
+      
       } catch (err) {
+        
         console.warn('[vuex.auth] Login', err);
         commit('snackbar/SHOW_MESSAGE', {
           message: err.message,
@@ -77,6 +78,7 @@ export default {
             logout: false
           }
         }
+       
         commit('SET_CURRENT_USER', userChange);
       } catch (err) {
         console.warn('[vuex.auth] RefreshInfoUser', err);
@@ -117,8 +119,7 @@ export default {
           password: payload.password,
           passwordConfirm:  payload.password
         });
-
-         
+ 
         const user = {
           ...response.data.data,
           ...{

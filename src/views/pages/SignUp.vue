@@ -7,7 +7,7 @@
             v-model="valid"
             lazy-validation
             ref="form"
-            @submit="makeRegister"
+            @submit.prevent="makeRegister"
           >
             <v-container class="py-0 px-8">
               <v-row>
@@ -48,7 +48,7 @@
                 <v-col cols="6" md="6" class="text-left">
                   <v-btn
                     :loading="loading"
-                    @click="makeRegister"
+                    type="submit"
                     :disabled="!valid"
                     color="success"
                   >
@@ -119,7 +119,7 @@ export default {
   mounted() {
     this.$nextTick(function () {
       setTimeout(() => {
-        this.$refs.nome.focus();
+        this.$refs.nome?.focus();
       }, 500);
     });
   },
