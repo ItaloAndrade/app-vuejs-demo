@@ -2,9 +2,11 @@ import $store from '../store'
 import {
   AuthService
 } from '@/services/auth.service'
-
+import {routes} from '@/router';
 import NProgress from 'nprogress'; // progress bar
 import 'nprogress/nprogress.css'; // progress bar style
+
+
 
 NProgress.configure({
   showSpinner: false
@@ -12,7 +14,8 @@ NProgress.configure({
 
 
 export async function initCurrentUserStateMiddleware(to, from, next) {
-
+ 
+  $store.dispatch('user/generateRoutes',routes); /** aqui pode ser adicionado  as regras relacionado a montagem do menu */
   NProgress.start();
   if (AuthService.hasToken() && !$store.getters["user/id"]) {
     try {
@@ -38,7 +41,7 @@ export function checkAccessMiddleware(to, from, next) {
     next({
       name: 'SignIn'
     });
-  } else {
+  } else {  
     next();
   }
 }

@@ -2,7 +2,7 @@ import {BaseService} from './base.service'
 import {
   ErrorWrapper,
   ResponseWrapper
-} from './util'
+} from '../infra/util'
 
 import {API_URL} from '../.env';
 import {AuthService}

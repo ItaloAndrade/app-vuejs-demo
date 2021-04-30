@@ -7,7 +7,7 @@ const dashboardRouter = [{
         name: 'Dashboard',
         meta: {
             isAuth: true,
-            meta: { title: `Dashboard` }
+            meta: { title: `Dashboard`,icon: 'mdi-view-dashboard' }
         },
     }, ],
 }]

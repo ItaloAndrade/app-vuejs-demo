@@ -8,7 +8,7 @@ const authRouter = [{
     name: 'SignIn',
     component: SignIn,
     meta: {
-      title: ` Login | Marvel`
+      title: ` Login | Marvel`,icon: 'mdi-view-dashboard'
     }
   },
   {
@@ -18,7 +18,7 @@ const authRouter = [{
     component: () => import('@/views/pages/SignUp'),
     hidden: true,
     meta: {
-      title: ` Registro | Marvel`
+      title: ` Registro | Marvel`,icon: 'mdi-view-dashboard'
     }
   },
 ]

@@ -14,7 +14,8 @@ const errorsRouter = [
     name: 'Page401',
     meta: {
       title: 'route.errorPages.page401',
-      noCache: true
+      noCache: true,
+      icon: 'mdi-view-dashboard'
     },
     props: {
       errorCode: 401
@@ -25,7 +26,8 @@ const errorsRouter = [
     component: () => import('@/views/pages/ErrorPage'),
     name: 'Page403',
     meta: {
-      title: 'route.errorPages.page403'
+      title: 'route.errorPages.page403',
+      icon: 'mdi-view-dashboard'
     },
     props: {
       errorCode: 403
@@ -36,7 +38,7 @@ const errorsRouter = [
     component: () => import('@/views/pages/ErrorPage'),
     name: 'Page404',
     meta: {
-      title: 'route.errorPages.page404'
+      title: 'route.errorPages.page404',icon: 'mdi-view-dashboard'
     },
     props: {
       errorCode: 404
@@ -47,7 +49,8 @@ const errorsRouter = [
     component: () => import('@/views/pages/ErrorPage'),
     name: 'Page500',
     meta: {
-      title: 'route.errorPages.page500'
+      title: 'route.errorPages.page500',
+      icon: 'mdi-view-dashboard'
     },
     props: {
       errorCode: 500

@@ -14,7 +14,7 @@ import dashboardRouter from './modules/dashboard';
 
 Vue.use(VueRouter);
 
-const routes = [
+export const  routes = [
   ...authRouter,
   ...dashboardRouter,
   ...errorsRouter,

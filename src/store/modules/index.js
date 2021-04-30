@@ -1,11 +1,9 @@
-import user from './auth'
-import dom from './dom'
-import snackbar from './snackbar'
-import drawer from './drawer'
+import user from './auth';
+import snackbar from './snackbar'; 
+import settings from './settings';
 
 export default {
-  user,
-  dom,
-  snackbar,
-  drawer
+  user, 
+  snackbar, 
+  settings
 }

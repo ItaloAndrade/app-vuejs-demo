@@ -1,7 +1,7 @@
 import axios from 'axios'  
 
 import { API_URL } from '../.env';
-import { ErrorWrapper, ResponseWrapper } from './util' ;
+import { ErrorWrapper, ResponseWrapper } from '../infra/util' ;
 import $router from '@/router';
 
 export class AuthService {

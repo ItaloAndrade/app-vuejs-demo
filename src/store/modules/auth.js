@@ -3,13 +3,12 @@ import {
 } from '@/services/users.service';
 import {
   AuthService
-} from '@/services/auth.service'; 
-
-
+} from '@/services/auth.service';
 
 export default {
   namespaced: true,
   state: {
+    routes: [],
     user: {
       id: '',
       role: '',
@@ -18,15 +17,26 @@ export default {
       token: '',
     }
   },
-  getters: { 
-    name (state) {return state.user.name} ,
-    email  (state)  {return state.user.email} ,
-    id (state) {return state.user.id} 
+  getters: {
+    permissionRoutes: (state) => state.routes,
+    name(state) {
+      return state.user.name
+    },
+    email(state) {
+      return state.user.email
+    },
+    id(state) {
+      return state.user.id
+    }
   },
   mutations: {
+    SET_ROUTES: (state, payload) => {
+      console.log(1)
+      console.log(payload)
+      state.routes = payload;
+    },
     SET_CURRENT_USER(state, payload) {
- // eslint-disable-next-line no-debugger
- debugger
+
       if (payload.logout) {
         state.user.id = '';
         state.user.role = '';
@@ -54,9 +64,9 @@ export default {
         });
 
         await commit('SET_CURRENT_USER', user);
-      
+
       } catch (err) {
-        
+
         console.warn('[vuex.auth] Login', err);
         commit('snackbar/SHOW_MESSAGE', {
           message: err.message,
@@ -78,7 +88,7 @@ export default {
             logout: false
           }
         }
-       
+
         commit('SET_CURRENT_USER', userChange);
       } catch (err) {
         console.warn('[vuex.auth] RefreshInfoUser', err);
@@ -95,9 +105,9 @@ export default {
       commit
     }) => {
       try {
-        AuthService.logout(); 
+        AuthService.logout();
         await commit('SET_USER_INFO', {});
-      
+
       } catch (err) {
         console.warn('[vuex.user] LogOut', err);
       }
@@ -110,16 +120,16 @@ export default {
     register: async ({
       commit,
     }, payload) => {
-      try { 
+      try {
         const response = await AuthService.register({
           email: payload.email.trim(),
           name: payload.name.trim(),
           role: 'admin',
           status: true,
           password: payload.password,
-          passwordConfirm:  payload.password
+          passwordConfirm: payload.password
         });
- 
+
         const user = {
           ...response.data.data,
           ...{
@@ -128,7 +138,7 @@ export default {
           }
         }
         await commit('SET_CURRENT_USER', user);
-       
+
       } catch (err) {
         console.warn('[vuex.auth] Login', err);
         commit('snackbar/SHOW_MESSAGE', {
@@ -140,5 +150,10 @@ export default {
         });
       }
     },
+    generateRoutes: async ({
+      commit,
+    }, payload) => {
+        commit('SET_ROUTES', payload);    
+    }
   }
 }

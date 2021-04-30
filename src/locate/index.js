@@ -48,4 +48,5 @@ export async function setLocale(locale) {
   }
 }
 
+
 export default i18n;

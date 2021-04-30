@@ -1,8 +1,8 @@
 import qs from 'qs'
 import { assert } from '@/core'
 
-import { Http } from './http.init'
-import { ResponseWrapper, ErrorWrapper } from './util'
+import { Http } from '../infra/http.init'
+import { ResponseWrapper, ErrorWrapper } from '../infra/util'
 
 export class BaseService {
   static get entity () {
