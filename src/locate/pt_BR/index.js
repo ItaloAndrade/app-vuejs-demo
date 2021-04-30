@@ -1,5 +1,7 @@
 
+import route from './route.js'; 
 export default {
+  route, 
   auth: {
     email: 'E-mail',
     name: 'Nome',

@@ -4,6 +4,7 @@ const errorsRouter = [
     path: '/error/301',
     component: () => import('@/views/pages/ErrorPage'),
     name: 'Page301',
+    
     props: {
       errorCode: 301
     },

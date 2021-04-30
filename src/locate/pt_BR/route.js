@@ -1,5 +1,5 @@
 export default {
-    dashboard: 'Dashboard',
+    dashboard: 'Dashb',
     // introduction: 'Introduction',
     documentation: 'Documentation',
     guide: 'Guide',

@@ -7,6 +7,7 @@ const authRouter = [{
     alias: '/login',
     name: 'SignIn',
     component: SignIn,
+    hidden: true,
     meta: {
       title: ` Login | Marvel`,icon: 'mdi-view-dashboard'
     }

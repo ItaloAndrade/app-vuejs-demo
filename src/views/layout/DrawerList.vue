@@ -1,5 +1,5 @@
 <template>
-  <v-list
+<v-list
     :dense="dense"
     class="layout-drawer"
   >
@@ -70,7 +70,6 @@
       return {};
     },
     created() {
-    console.log(this.routes);
 
     },
     methods: {
@@ -78,12 +77,17 @@
         return /^(https?:|mailto:|tel:)/.test(path);
       },
       isVisibleItem(item) {
-
+        console.group() 
+        console.log(this.onlyOneChild); 
+          console.log(this.hasOneVisibleChild(item.children, item));
+        console.log( this.alwaysShow);
+        console.groupEnd()
         return this.hasOneVisibleChild(item.children, item) &&
           (!this.onlyOneChild.children || this.onlyOneChild.noVisibleChildren) &&
           !item.alwaysShow;
       },
       hasOneVisibleChild(children = [], parent) {
+
         const visibleChildren = children.filter((item) => {
           if (item.hidden) return false;
           // Temp set(will be used if only has one visible child)
@@ -93,6 +97,7 @@
         // When there is only one child router, the child router is displayed by default
         if (visibleChildren.length === 1) {
           this.onlyOneChild.path = resolve(parent.path, this.onlyOneChild.path);
+
           this.onlyOneChild.meta.icon = this.onlyOneChild.meta.icon || parent.meta.icon || '';
           return true;
         }
