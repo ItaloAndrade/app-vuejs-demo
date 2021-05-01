@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div> 
         <ItemComic></ItemComic>
     </div>
 </template>

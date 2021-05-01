@@ -1,41 +1,61 @@
 <template>
-  <v-navigation-drawer dark fixed app :value="navbarShow" width="250" @input="stateNavbarShow">
-    <v-app-bar v-if="navbarLogo" :dense="toolbarDense" dark>
-      <v-toolbar-title class="text-center">
-        <v-avatar size="32px" tile>
-          <img src="img/icons/android-icon-36x36.png" alt="VVA">
-        </v-avatar>
-        <span>{{ $t('toolbar.appname') }}</span>
-      </v-toolbar-title>
-    </v-app-bar>
-    <drawer-list :dense="navbarDense" :routes="permissionRoutes" icon-show />
+  <v-navigation-drawer dark fixed app width="250" :src="barImage"  :value="navbarShow"  @input="stateNavbarShow">
+    <template v-slot:img="props">
+      <v-img :gradient="`to bottom, ${barColor}`" v-bind="props"    />
+    </template>
+    <perfect-scrollbar ref="scroll">
+      <v-divider class="mb-1" />
+      <v-list dense nav>
+        <v-list-item>
+          <v-list-item-avatar class="align-self-center" color="white" contain>
+            <v-img :src="logoImg" max-height = "40" height = "40"   />
+          </v-list-item-avatar> 
+          <v-list-item-content>
+          {{title}}
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+      <v-divider class="mb-2" />
+      <div />
+      <drawer-list :dense="navbarDense" :routes="permissionRoutes" icon-show />
+    </perfect-scrollbar>
   </v-navigation-drawer>
 </template>
 
 <script>
-  import {
+  // Utilities
+  import { 
     mapGetters
-  } from 'vuex';
+  } from 'vuex'
+  import {
+    PerfectScrollbar
+  } from 'vue2-perfect-scrollbar';
+
 
   export default {
-    name: 'Drawer',
+    name: 'DashboardCoreDrawer',
     components: {
+      PerfectScrollbar,
       DrawerList: () => import('@/views/layout/DrawerList'),
     },
-    data: () => ({}),
+    props: {
+       
+    },
     computed: {
-      ...mapGetters("settings", ['navbarLogo', 'toolbarDense', 'navbarShow', 'navbarDense', 'routes',
-        'user/permissionRoutes'
-      ], ),
+      ...mapGetters("settings", ['navbarLogo','title', 'toolbarDense','logoImg', 'navbarShow', 'navbarDense', 'routes','barColor','barImage' ], ),
       ...mapGetters("user", ['permissionRoutes'], ),
-    },
-    created() {
-    //  console.log(this['permissionRoutes'])
-    },
+      
+    }, 
     methods: {
-      stateNavbarShow() {
-        //this.$store.dispatch('NavbarState', { state });
-      },
+       stateNavbarShow(state) {
+      this.$store.dispatch('settings/NavbarState', { state });
     },
-  };
+    },
+  }
 </script>
+
+<style scoped lang="scss"> 
+  .ps {
+    height: 100vh;
+  } 
+</style>

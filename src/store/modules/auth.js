@@ -8,10 +8,7 @@ import {
 const buildMenu = ({
     routes,
     rolesUser
-  }) => {
-
-    // eslint-disable-next-line no-debugger
-    debugger
+  }) => { 
     const listWithPermisse = routes.filter((route) =>
       (!route.hidden && ( route.meta.roles.includes("*") ||
         route.meta.roles.find(obj => rolesUser.includes(obj))))); /**remove todos menus sem permissão  */
@@ -40,6 +37,7 @@ const buildMenu = ({
           name: '',
           email: '',
           token: '',
+          avatar: 'https://avatars.githubusercontent.com/u/2882342?s=60&v=4',
         }
       },
       getters: {
@@ -52,6 +50,7 @@ const buildMenu = ({
         },
         name: (state) => state.user.name,
         email: (state) => state.user.email,
+        avatar: (state) => state.user.avatar,
         id: (state) => state.user.id
       },
       mutations: {

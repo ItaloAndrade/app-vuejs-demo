@@ -1,7 +1,17 @@
-import route from './route.js'; 
 
+import route from './route.js'; 
 export default {
   route, 
+  auth: {
+    email: 'Email',
+    name: 'Name',
+    password: 'Passwords',
+    confirm: 'Confirm',
+    labelgoregister: 'You dont have an account',
+    goregister: 'Register',
+    btnregister: 'Create Account',
+    back: 'Back',
+  }, 
   toolbar: {
     appname: 'Application',
     settings: 'Settings',
@@ -21,16 +31,7 @@ export default {
     settingsBtn: 'Setting btn',
     footer: 'Footer',
   },
-  login: {
-    titleIn: 'Sing In Form',
-    titleUn: 'Sing Un Form',
-    singIn: 'Sing in',
-    singUp: 'Sing up',
-    email: 'E-mail',
-    name: 'Nome',
-    password: 'Senha',
-    confirm: 'Confirm',
-  },
+ 
   register: { 
     email: 'E-mail',
     name: 'Nome',

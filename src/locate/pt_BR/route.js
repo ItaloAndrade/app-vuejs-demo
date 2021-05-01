@@ -53,7 +53,7 @@ export default {
       tooltip: 'Tooltip',
       typography: 'Typography',
     },
-    errors: 'Errors',
+    errors: 'Erros',
     errorPages: {
       page301: '301',
       page401: '401',

@@ -1,7 +1,6 @@
 <template>
-  <v-main>
-    <router-view />
- 
+  <v-main class="pa-15">
+    <router-view /> 
   </v-main>
 </template>
 

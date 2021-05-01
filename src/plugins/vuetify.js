@@ -14,7 +14,7 @@ const vuetify = new Vuetify({
     options: {
       customProperties: true,
     },
-    dark: false,
+    dark: true,
     themes: themes[0],
   },
   icons: {
@@ -47,8 +47,7 @@ export async function setVuetifyTheme(index) {
  *
  * @param {Boolean} dark new value
  */
-export async function setVuetifyThemeDark(dark) {
-  console.log(`[Vuetify] Change theme to "${dark ? 'dark' : 'light'}"`);
+export async function setVuetifyThemeDark(dark) { 
   vuetify.framework.theme.dark = dark;
 }
 

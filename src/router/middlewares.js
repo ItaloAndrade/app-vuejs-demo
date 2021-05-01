@@ -7,6 +7,8 @@ import NProgress from 'nprogress'; // progress bar
 import 'nprogress/nprogress.css'; // progress bar style
 import {routes} from '@/router';
 
+import i18n from '@/locate'; 
+
 NProgress.configure({
   showSpinner: false
 }); // NProgress Configuration
@@ -71,7 +73,7 @@ export function checkAccessMiddleware(to, from, next) {
  */
 export function setPageTitleMiddleware(to, from, next) {
   const pageTitle = to.matched.find(item => item.meta.title)
-  if (pageTitle) window.document.title = pageTitle.meta.title
+  if (pageTitle) window.document.title = i18n.t(pageTitle.meta.title)
   next();
 }
 

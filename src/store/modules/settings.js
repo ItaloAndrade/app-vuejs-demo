@@ -1,6 +1,7 @@
 import {
   settings as defaultSettings,
-  version
+  version,
+  title
 } from '@/config';
 import {
   setVuetifyThemeDark,
@@ -18,8 +19,13 @@ const getDefaultSettings = () => {
 export default {
   state: getDefaultSettings(), // Deep Clone
   namespaced: true,
-  getters: {
+  getters: { 
+    barImage:(state)=> state.barImage,
+    drawer:(state)=> state.drawer,
+    logoImg:(state)=> state.logoImg,
+    barColor:(state)=> state.barColor,
     version: () => version,
+    title: () =>  title,
     locale: (state) => state.locale,
     toolbarDense: (state) => state.dense,
     navbarDense: (state) => state.navbar.dense,
@@ -35,6 +41,13 @@ export default {
   },
 
   mutations: {
+    SET_BAR_IMAGE (state, payload) {
+      state.barImage = payload
+    },
+    SET_DRAWER (state, payload) {
+      state.drawer = payload
+    },
+    /**ok */
     SET_SETTINGS: (state, payload) => {
       state.locale = payload.locale || state.locale;
       state.dense = typeof payload.dense === 'boolean' ? payload.dense : state.dense;
