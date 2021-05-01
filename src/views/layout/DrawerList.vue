@@ -1,50 +1,35 @@
 <template>
-<v-list
-    :dense="dense"
-    class="layout-drawer"
-  >
-    <div
-      v-for="item in routes.filter(item => !item.hidden)"
-      :key="item.title"
-    >
-      <v-list-item
-        v-if="isVisibleItem(item)"
-        :to="resolvePath(onlyOneChild.path)"
-        ripple="ripple"
-      >
+  <v-list :dense="dense" class="layout-drawer">
+    <div v-for="item in routes.filter(item => !item.hidden)" :key="item.title">
+      <v-list-item v-if="!item.meta.hasSubMenu" :to="item.path" ripple="ripple">
         <v-list-item-icon class="layout-drawer__icon">
-          <v-icon>{{ getListIcon(onlyOneChild) }}</v-icon>
+          <v-icon>{{ item.meta.icon }}</v-icon>
         </v-list-item-icon>
-
         <v-list-item-content>
           <v-list-item-title>
-            {{ getListTitle(onlyOneChild) }}
+            {{ $t( item.meta.title ) }}
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-
-      <v-list-group
-        v-else
-        :prepend-icon="getListIcon(item)"
-      >
+      <v-list-group v-else :prepend-icon="item.meta.icon">
         <template v-slot:activator>
           <v-list-item-content>
             <v-list-item-title>
-              {{ getListTitle(item) }}
+              {{$t(item.meta.title)  }} 
             </v-list-item-title>
           </v-list-item-content>
         </template>
-
-        <the-layout-drawer-list
-          :dense="dense"
-          :routes="item.children"
-          :base-path="resolvePath(item.path)"
-        />
+        <v-list-item v-for="child in item.children" :key="child.title" ripple="ripple">
+          <v-list-item-content>
+            <v-list-item-title>
+              {{$t(child.meta.title )}}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list-group>
     </div>
   </v-list>
 </template>
-
 <script>
   import {
     resolve
@@ -70,34 +55,24 @@
       return {};
     },
     created() {
-
+      console.log(this.routes)
     },
     methods: {
-      isExternal(path) {
-        return /^(https?:|mailto:|tel:)/.test(path);
-      },
       isVisibleItem(item) {
-        console.group() 
-        console.log(this.onlyOneChild); 
-          console.log(this.hasOneVisibleChild(item.children, item));
-        console.log( this.alwaysShow);
-        console.groupEnd()
-        return this.hasOneVisibleChild(item.children, item) &&
-          (!this.onlyOneChild.children || this.onlyOneChild.noVisibleChildren) &&
-          !item.alwaysShow;
+        return item.children.length == 0;
       },
       hasOneVisibleChild(children = [], parent) {
 
+        /***/
         const visibleChildren = children.filter((item) => {
           if (item.hidden) return false;
-          // Temp set(will be used if only has one visible child)
           this.onlyOneChild = item;
           return true;
         });
-        // When there is only one child router, the child router is displayed by default
+
+        /** se e */
         if (visibleChildren.length === 1) {
           this.onlyOneChild.path = resolve(parent.path, this.onlyOneChild.path);
-
           this.onlyOneChild.meta.icon = this.onlyOneChild.meta.icon || parent.meta.icon || '';
           return true;
         }
@@ -109,6 +84,7 @@
           };
           return true;
         }
+
         return false;
       },
       resolvePath(path) {
@@ -118,7 +94,7 @@
         return resolve(this.basePath, path);
       },
       getListIcon(item) {
-        return this.iconShow && item.meta ? item.meta.icon : ' ';
+        return item.meta.icon;
       },
       getListTitle(item) {
         return item.meta ? this.$t(item.meta.title) : '';

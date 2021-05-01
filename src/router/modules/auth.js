@@ -9,7 +9,10 @@ const authRouter = [{
     component: SignIn,
     hidden: true,
     meta: {
-      title: ` Login | Marvel`,icon: 'mdi-view-dashboard'
+      title: `Login | Marvel`,icon: 'mdi-view-dashboard',
+      roles : [],
+      isAuth:false,
+      isChild: false,
     }
   },
   {
@@ -19,9 +22,11 @@ const authRouter = [{
     component: () => import('@/views/pages/SignUp'),
     hidden: true,
     meta: {
-      title: ` Registro | Marvel`,icon: 'mdi-view-dashboard'
+      title: ` Registro | Marvel`,icon: 'mdi-view-dashboard', roles : [],
+      isAuth:false,
+      isChild: false,
     }
-  },
+  }
 ]
 
 export default authRouter;

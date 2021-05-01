@@ -66,6 +66,7 @@ export class BaseService {
     } catch (error) {
       const message = error.response.data ? error.response.data.error : error.response.statusText
       throw new ErrorWrapper(error, message)
+      
     }
   }
 

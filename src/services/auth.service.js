@@ -1,63 +1,68 @@
-import axios from 'axios'  
+import axios from 'axios'
 
-import { API_URL } from '../.env';
-import { ErrorWrapper, ResponseWrapper } from '../infra/util' ;
+import {
+  API_URL
+} from '../.env';
+import {
+  ErrorWrapper,
+  ResponseWrapper
+} from '../infra/util';
 import $router from '@/router';
 
 export class AuthService {
 
-  static get entity () {
+  static get entity() {
     return `${API_URL}/auth`;
-  } 
+  }
 
   static async login({
     email,
     password
   }) {
-    try { 
+    try {
       const response = await axios.post(`${this.entity}/login`, {
         email,
         password
       });
-      AuthService.setToken(response.data.token); 
+      AuthService.setToken(response.data.token);
       const user = {
         ...response.data.data,
         ...{
           token: response.token,
-          logout: false
-        }
-
+          logout: false,
+          roles: ['admin'],
+        } 
       }
       $router.push({
-        name: 'Dashboard'
-        , replace: true
+        name: 'Dashboard',
+        replace: true
       }).catch(() => {});
-      return  new ResponseWrapper(response, user); 
-    } catch (error) { 
+      return new ResponseWrapper(response, user);
+    } catch (error) {
       const message = error.response.data ? error.response.data.error : error.response.statusText
       throw new ErrorWrapper(error, message)
     }
   }
 
   static async register({
-    email, 
-    name,  
-    role,  
-    status, 
-    password, 
+    email,
+    name,
+    role,
+    status,
+    password,
     passwordConfirm
   }) {
-    try { 
+    try {
       const response = await axios.post(`${this.entity}/register`, {
-        email, 
-        name,  
-        role,  
-        status, 
-        password, 
+        email,
+        name,
+        role,
+        status,
+        password,
         passwordConfirm
       });
-       
-      AuthService.setToken(response.data.token); 
+
+      AuthService.setToken(response.data.token);
       const user = {
         ...response.data.data,
         ...{
@@ -66,36 +71,36 @@ export class AuthService {
         }
       }
       $router.push({
-        name: 'Dashboard'
-        , replace: true
+        name: 'Dashboard',
+        replace: true
       }).catch(() => {});
-      return  new ResponseWrapper(response, user); 
-    } catch (error) { 
+      return new ResponseWrapper(response, user);
+    } catch (error) {
       const message = error.response.data ? error.response.data.error : error.response.statusText
       throw new ErrorWrapper(error, message)
     }
   }
 
 
-  static  logout() {
-    try { 
-      AuthService.setToken(null); 
+  static logout() {
+    try {
+      AuthService.setToken(null);
       $router.push({
         name: 'SignIn',
-         replace: true
+        replace: true
       }).catch(() => {});
     } catch (error) {
       throw new Error(error);
     }
   }
- 
+
   static hasToken = () =>
     Boolean(localStorage.getItem('marvelToken') !== 'undefined' &&
-    !!localStorage.getItem('marvelToken'))
+      !!localStorage.getItem('marvelToken'))
 
   static setToken = (status) => localStorage.setItem('marvelToken', status)
 
-  static getToken = () =>  String(localStorage.getItem('marvelToken'))
+  static getToken = () => String(localStorage.getItem('marvelToken'))
 
-   
+
 }

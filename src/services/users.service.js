@@ -20,12 +20,10 @@ export class UsersService extends BaseService {
         auth: true
       }).get(`${this.entity}/current`)
       let user = new ResponseWrapper(response, response.data.data);
-      user = {
+      user = { 
         ...user.data,
-        ...{token: AuthService.getToken() }
-      }  
-      
-      console.warn('[user.service] getCurrent', user);
+        ...{token: AuthService.getToken() ,roles:['admin']}
+      }   
       return user;
     } catch (error) {
       const message = error.response.data ? error.response.data.error : error.response.statusText
