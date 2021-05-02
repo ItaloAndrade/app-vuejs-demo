@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import {  isNullUndefinedEmpty } from "@/infra/util";
 import {
   API_URL
 } from '../.env';
@@ -7,7 +7,7 @@ import {
   ErrorWrapper,
   ResponseWrapper
 } from '../infra/util';
-import $router from '@/router';
+
 
 export class AuthService {
 
@@ -20,23 +20,19 @@ export class AuthService {
     password
   }) {
     try {
+          
       const response = await axios.post(`${this.entity}/login`, {
         email,
         password
       });
       AuthService.setToken(response.data.token);
-      const user = {
-        ...response.data.data,
-        ...{
-          token: response.token,
+      const user = { 
+       ...{ token: response.data.token,
           logout: false,
-          roles: ['admin'],
-        } 
+          roles: ['admin']},
+          ...response.data.data.user
       }
-      $router.push({
-        name: 'Dashboard',
-        replace: true
-      }).catch(() => {});
+      console.log('login '+JSON.stringify(user)) ;
       return new ResponseWrapper(response, user);
     } catch (error) {
       const message = error.response.data ? error.response.data.error : error.response.statusText
@@ -63,17 +59,14 @@ export class AuthService {
       });
 
       AuthService.setToken(response.data.token);
-      const user = {
-        ...response.data.data,
-        ...{
-          token: response.token,
-          logout: false
-        }
-      }
-      $router.push({
-        name: 'Dashboard',
-        replace: true
-      }).catch(() => {});
+      
+      const user = { 
+        ...{ token: response.data.token,
+           logout: false,
+           roles: ['admin']},
+           ...response.data.data.user
+       } 
+      console.log('register '+JSON.stringify(user)) ;
       return new ResponseWrapper(response, user);
     } catch (error) {
       const message = error.response.data ? error.response.data.error : error.response.statusText
@@ -84,20 +77,14 @@ export class AuthService {
 
   static logout() {
     try {
-      AuthService.setToken(null);
-      $router.push({
-        name: 'SignIn',
-        replace: true
-      }).catch(() => {});
+      AuthService.setToken(null); 
     } catch (error) {
       throw new Error(error);
     }
   }
 
-  static hasToken = () =>
-    Boolean(localStorage.getItem('marvelToken') !== 'undefined' &&
-      !!localStorage.getItem('marvelToken'))
-
+  static hasToken = () =>!isNullUndefinedEmpty(this.getToken)
+     
   static setToken = (status) => localStorage.setItem('marvelToken', status)
 
   static getToken = () => String(localStorage.getItem('marvelToken'))

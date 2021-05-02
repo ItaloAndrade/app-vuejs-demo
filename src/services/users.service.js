@@ -24,6 +24,8 @@ export class UsersService extends BaseService {
         ...user.data,
         ...{token: AuthService.getToken() ,roles:['admin']}
       }   
+
+      console.log('getCurrent '+JSON.stringify(user)) ;
       return user;
     } catch (error) {
       const message = error.response.data ? error.response.data.error : error.response.statusText

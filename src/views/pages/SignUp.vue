@@ -70,7 +70,10 @@
 </template>
 
 <script>
+
 import { mapActions } from "vuex";
+import $router from '@/router';
+
 export default {
   components: {
     BaseMaterialCard: () => import("@/views/components/MaterialCard"),
@@ -113,6 +116,10 @@ export default {
       });
       setTimeout(() => {
         this.loading = false;
+        $router.push({
+        name: 'Dashboard',
+        replace: true
+      }).catch(() => {});
       });
     },
   },

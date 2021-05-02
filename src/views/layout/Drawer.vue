@@ -7,8 +7,8 @@
       <v-divider class="mb-1" />
       <v-list dense nav>
         <v-list-item>
-          <v-list-item-avatar class="align-self-center" color="white" contain>
-            <v-img :src="logoImg" max-height = "40" height = "40"   />
+          <v-list-item-avatar class="align-self-center" color="white"  width = "50" height = "50" contain>
+            <v-img :src="logoImg" width = "50" height = "50"   />
           </v-list-item-avatar> 
           <v-list-item-content>
           {{title}}

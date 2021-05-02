@@ -85,8 +85,12 @@
   </v-menu>
 </template>
 
+
 <script>
-import { mapGetters } from 'vuex';
+
+import { mapActions,mapGetters } from "vuex";
+import $router from '@/router';
+
 export default {
   name: 'AppBarProfile',
   data() {
@@ -129,12 +133,17 @@ export default {
     ]),
   },
   methods: {
+    ...mapActions({
+      logOut: "user/logOut",
+    }),
     logout() {
-      this.$store.dispatch('LogOut');
-      this.$router.push('/landing');
+      this.logOut(); 
+       $router.push({
+        name: 'SignIn',
+        replace: true
+      }).catch(() => {});
     },
     toggleSettingsPanel() {
-      console.log('this.toggleSettingsPanel()111');
       this.$vuetify.goTo(0);
       this.$store.dispatch('SettingsPanelToggle');
     },

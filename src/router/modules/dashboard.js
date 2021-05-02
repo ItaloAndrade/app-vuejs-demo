@@ -5,8 +5,6 @@ const dashboardRouter = [{
     meta: {
         isAuth: true, /** indica se é necessário validação , filhos herdam o pai */
         hasSubMenu: false, /** indica se  o mesmo deve ser formado por menu com sub-menu , true para submenu */
-        icon: 'mdi-view-dashboard',
-        title : 'route.dashboard',
         roles : ['*'],
     },
     children: [{
@@ -20,6 +18,7 @@ const dashboardRouter = [{
             roles : ['superadmin'],
             primary : true,
             hasSubMenu: false, 
+            isAuth: true,
         },
     }, ],
 }]

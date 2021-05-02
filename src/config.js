@@ -37,7 +37,7 @@ module.exports = {
     locale: 'pt',
     barColor: 'rgba(0, 0, 0, .8), rgba(0, 0, 0, .8)',
     barImage: 'https://demos.creative-tim.com/material-dashboard/assets/img/sidebar-1.jpg',
-    logoImg: 'https://i.pinimg.com/originals/db/b2/12/dbb2129035f83c491af200bb58e257cc.jpg',
+    logoImg: '/static/logo.jpg',
     drawer: null,
     /** oK */
 

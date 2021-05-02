@@ -1,11 +1,16 @@
 import $store from '../store'
 import {
   AuthService
-} from '@/services/auth.service' 
+} from '@/services/auth.service'
 
+  
 import NProgress from 'nprogress'; // progress bar
 import 'nprogress/nprogress.css'; // progress bar style
-import {routes} from '@/router';
+import {
+  routes
+} from '@/router';
+
+import {  isNullUndefinedEmpty } from "@/infra/util";
 
 import i18n from '@/locate'; 
 
@@ -19,16 +24,23 @@ NProgress.configure({
  * @param  {} from
  * @param  {} next
  */
-export async function initCurrentUserStateMiddleware(to, from, next) { 
+export async function initCurrentUserStateMiddleware(to, from, next) {
+
+   
   NProgress.start();
-  if (AuthService.hasToken() && !$store.getters["user/id"]) {
-    try {
+  const isAuthRoute = to.matched.some(item => item.meta.isAuth)
+   
+  if (!isAuthRoute) {
+    next();
+  } else if (AuthService.hasToken()
+        && isNullUndefinedEmpty($store.getters["user/id"])) {
+    try { 
       await $store.dispatch('user/refreshInfoUser');
       next()
     } catch (err) {
       console.warn('Middleware', err);
     }
-  } else {
+  } else { 
     next();
   }
 }
@@ -41,7 +53,8 @@ export async function initCurrentUserStateMiddleware(to, from, next) {
  * 
  */
 export async function buildMenu(to, from, next) {
-  await $store.dispatch('user/generateMenu',routes);
+
+  await $store.dispatch('user/generateMenu', routes);
   next();
 }
 
@@ -52,15 +65,14 @@ export async function buildMenu(to, from, next) {
  * @param  {} next
  */
 export function checkAccessMiddleware(to, from, next) {
-
+  
   const isAuthRoute = to.matched.some(item => item.meta.isAuth)
-
   if (!isAuthRoute) next();
   else if (!$store.getters["user/id"]) {
     next({
       name: 'SignIn'
     });
-  } else {  
+  } else {
     next();
   }
 }

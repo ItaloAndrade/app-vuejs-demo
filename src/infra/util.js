@@ -91,3 +91,7 @@ export function clearData (data) {
   })
   return result
 }
+
+export function isNullUndefined (value) {return Boolean(undefined  == value ||  value == null  || value == 'undefined')}
+
+export function isNullUndefinedEmpty  (value) {return Boolean(undefined  == value ||  value == null  || value == 'undefined' ||  value == '')}

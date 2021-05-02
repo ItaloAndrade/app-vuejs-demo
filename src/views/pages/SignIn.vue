@@ -34,6 +34,7 @@
   import {
     mapActions
   } from "vuex";
+  import $router from '@/router';
   export default {
     name: "SignIn",
     components: {
@@ -68,7 +69,11 @@
           password: this.model.password,
         });
         setTimeout(() => {
-          this.loading = false
+          this.loading = false;
+          $router.push({
+        name: 'Dashboard',
+        replace: true
+      }).catch(() => {});
         });
       }
     },
