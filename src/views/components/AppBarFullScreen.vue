@@ -41,8 +41,9 @@ export default {
     },
   },
   methods: {
-    toggleFullScreen() {
-      this.$store.dispatch('FullscreenToggle', { state: toggleFullScreen() });
+    
+    toggleFullScreen() { 
+      this.$store.dispatch('settings/changeFullScreen', { payload: toggleFullScreen() });
     },
   },
 };

@@ -2,6 +2,9 @@
 import route from './route.js'; 
 export default {
   route, 
+  dashboard:{
+    notification : 'Notificações'
+  },
   auth: {
     email: 'E-mail',
     name: 'Nome',
@@ -19,5 +22,22 @@ export default {
     403: 'Proibido 😩😩!',
     404: 'Não encontrado 😩😩!',
   },
- 
+  toolbar : {
+    profile : 'Perfil',
+    settings : 'Configuração',
+    logout : 'Sair'
+  } ,
+   settings : {
+    title :'Personalizar o Temas' ,
+    default : 'Restaurar Padrão' ,
+    version : 'Versão',
+    configlayout : 'Personalizar Layout',
+    toolbarDense : 'Densidade Toolbar',
+    navbarDense : 'Densidade NavBar',
+    navbarLogo : 'Logo NavBar',
+    settingsBtn : 'Botão Config',
+    footer : 'Rodapé',
+    dark : 'Modo Dark',
+    theme : 'Themas  😎 !'
+  }
 };

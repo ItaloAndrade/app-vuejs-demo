@@ -19,35 +19,52 @@ const getDefaultSettings = () => {
 export default {
   state: getDefaultSettings(), // Deep Clone
   namespaced: true,
-  getters: { 
-    barImage:(state)=> state.barImage,
-    drawer:(state)=> state.drawer,
-    logoImg:(state)=> state.logoImg,
-    barColor:(state)=> state.barColor,
-    version: () => version,
-    title: () =>  title,
-    locale: (state) => state.locale,
+  getters: {
+    themeDark: (state) => state.theme.dark,
+    fullscreenShow: (state) => state.fullscreen.show,
     toolbarDense: (state) => state.dense,
+    /**ok */
+
+    barImage: (state) => state.barImage,
+    drawer: (state) => state.drawer,
+    logoImg: (state) => state.logoImg,
+    barColor: (state) => state.barColor,
+    version: () => version,
+    title: () => title,
+    locale: (state) => state.locale,
+
     navbarDense: (state) => state.navbar.dense,
     navbarShow: (state) => state.navbar.show,
     navbarLogo: (state) => state.navbar.logo,
     fullscreenBtn: (state) => state.fullscreen.btn,
-    fullscreenShow: (state) => state.fullscreen.show,
+
     settingsPanelBtn: (state) => state.settingsPanel.btn,
     settingsPanelShow: (state) => state.settingsPanel.show,
     footerShow: (state) => state.footer,
     themeIndex: (state) => state.theme.index,
-    themeDark: (state) => state.theme.dark,
+
   },
 
   mutations: {
-    SET_BAR_IMAGE (state, payload) {
-      state.barImage = payload
+
+    SET_SETTINGS_ALL(state, payload) {
+      state.locale = payload.locale;
+      state.dense = payload.dense;
+      state.footer = payload.footer;
+      state.navbar = payload.navbar;
+      state.fullscreen = payload.fullscreen;
+      state.settingsPanel = payload.settingsPanel;
+      state.theme = payload.theme;
+      // apply settings to plugins
+      setVuetifyTheme(state.theme.index);
+      setVuetifyThemeDark(state.theme.dark);
+      setLocale(state.locale);
     },
-    SET_DRAWER (state, payload) {
-      state.drawer = payload
+
+    SETTINGS_PANEL_STATE: (state, payload) => {
+      state.settingsPanel.show = payload.state;
     },
-    /**ok */
+
     SET_SETTINGS: (state, payload) => {
       state.locale = payload.locale || state.locale;
       state.dense = typeof payload.dense === 'boolean' ? payload.dense : state.dense;
@@ -61,21 +78,31 @@ export default {
       setVuetifyThemeDark(state.theme.dark);
       setLocale(state.locale);
     },
+
+    THEME_DARK_TOGGLE: (state) => {
+      state.theme.dark = !state.theme.dark;
+    },
+    
+
+    NAVBAR_DENSE_TOGGLE: (state) => {
+      state.navbar.dense = !state.navbar.dense;
+    },
+
+    SET_BAR_IMAGE(state, payload) {
+      state.barImage = payload
+    },
+    SET_DRAWER(state, payload) {
+      state.drawer = payload
+    }, 
+   
     SET_LOCALE: (state, payload) => {
       state.locale = payload.locale;
     },
     THEME_TOGGLE: (state, payload) => {
       state.theme.index = payload.index;
     },
-    THEME_DARK_TOGGLE: (state) => {
-      state.theme.dark = !state.theme.dark;
-    },
-    TOOLBAR_DENSE_TOGGLE: (state) => {
-      state.dense = !state.dense;
-    },
-    NAVBAR_DENSE_TOGGLE: (state) => {
-      state.navbar.dense = !state.navbar.dense;
-    },
+    /**OK */
+
     NAVBAR_LOGO_TOGGLE: (state) => {
       state.navbar.logo = !state.navbar.logo;
     },
@@ -97,34 +124,65 @@ export default {
     SETTINGS_PANEL_TOGGLE: (state) => {
       state.settingsPanel.show = !state.settingsPanel.show;
     },
-    SETTINGS_PANEL_STATE: (state, payload) => {
-      state.settingsPanel.show = payload.state;
-    },
+ 
     FOOTER_TOGGLE: (state) => {
       state.footer = !state.footer;
     },
+ 
   },
   actions: {
-    SetLocale: async (context, payload) => {
-      context.commit('SET_LOCALE', payload);
+
+    changeModeStyle: async ({ commit,state}, payload) => {
+      const current = {  ...state};
+      current.theme.dark = payload;
+      commit('SET_SETTINGS_ALL', current);
+      await setVuetifyThemeDark(payload);
+    },
+
+    changeFullScreen: ({ commit,state}, payload) => {
+      const current = {  ...state}; 
+      current.fullscreen.show = payload;
+      commit('SET_SETTINGS_ALL', current); 
+    },
+  
+    changeLocale: async ({ commit,state}, payload) => {
+      const current = {  ...state};  
+      current.locale = payload.locale;
+      commit('SET_SETTINGS_ALL', current); 
       await setLocale(payload.locale);
     },
-    ThemeToggle: async (context, payload) => {
-      context.commit('THEME_TOGGLE', payload);
-      await setVuetifyTheme(payload.index);
+    settingsPanelToggle: async ({ commit,state}) => {
+      const current = {  ...state}; 
+      current.settingsPanel.show = !current.settingsPanel.show;
+      commit('SET_SETTINGS_ALL', current); 
     },
-    ThemeDarkToggle: async (context) => {
+    toolbarDenseToggle: async ({ commit,state}) => {
+      const current = {  ...state}; 
+      current.dense = !current.dense;
+      commit('SET_SETTINGS_ALL', current); 
+    },
+    settingsPanelState: async (context, payload) => {
+      context.commit('SETTINGS_PANEL_STATE', payload);
+    },
+
+    themeDarkToggle: async (context) => {
       context.commit('THEME_DARK_TOGGLE');
       await setVuetifyThemeDark(context.state.theme.dark);
     },
-    ToolbarDenseToggle: async (context) => {
-      context.commit('TOOLBAR_DENSE_TOGGLE');
-    },
-    NavbarDenseToggle: async (context) => {
+
+    navbarDenseToggle: async (context) => {
       context.commit('NAVBAR_DENSE_TOGGLE');
     },
-    NavbarLogoToggle: async (context, payload) => {
+
+    
+    navbarLogoToggle: async (context, payload) => {
       context.commit('NAVBAR_LOGO_TOGGLE', payload);
+    },
+    /**ok */
+ 
+    ThemeToggle: async (context, payload) => {
+      context.commit('THEME_TOGGLE', payload);
+      await setVuetifyTheme(payload.index);
     },
     NavbarToggle: async (context, payload) => {
       context.commit('NAVBAR_TOGGLE', payload);
@@ -138,19 +196,14 @@ export default {
     FullscreenBtn: async (context, payload) => {
       context.commit('FULLSCREEN_BTN', payload);
     },
-    SettingsPanelBtnToggle: async (context, payload) => {
+    settingsPanelBtnToggle: async (context, payload) => {
       context.commit('SETTINGS_PANEL_BTN_TOGGLE', payload);
     },
-    SettingsPanelToggle: async (context, payload) => {
-      context.commit('SETTINGS_PANEL_TOGGLE', payload);
-    },
-    SettingsPanelState: async (context, payload) => {
-      context.commit('SETTINGS_PANEL_STATE', payload);
-    },
-    SettingsPanelDefault: async (context) => {
+  
+    settingsPanelDefault: async (context) => {
       context.commit('SET_SETTINGS', getDefaultSettings());
     },
-    FooterToggle: async (context) => {
+    footerToggle: async (context) => {
       context.commit('FOOTER_TOGGLE');
     },
   },

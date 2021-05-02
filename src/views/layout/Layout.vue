@@ -3,8 +3,8 @@
         <appBar />
         <drawer />
         <content-view />
-        <fab-thema />
-        <the-layout-fab />
+        <fab-page-back />
+        <fab-thema-right />
     </v-app>
 </template>
 
@@ -15,8 +15,8 @@
             AppBar: () => import('./AppBar'),
             Drawer: () => import('./Drawer'),
             ContentView: () => import('./Content'),
-            FabThema: () => import('./FabThema'),
-            TheLayoutFab: () => import('./TheLayoutFab'),
+            FabPageBack: () => import('./FabPageBack'),
+            FabThemaRight: () => import('./FabThemaRight'),
         },
         data: () => ({
             expandOnHover: false,

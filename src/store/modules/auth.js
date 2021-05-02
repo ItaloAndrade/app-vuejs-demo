@@ -79,7 +79,7 @@ export default {
   },
   actions: {
     login: async ({
-      commit,
+      commit
     }, payload) => {
       try { 
         if (isNullUndefinedEmpty(payload.email) || 

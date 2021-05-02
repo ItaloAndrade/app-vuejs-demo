@@ -8,7 +8,7 @@
       fixed
       bottom
       right
-      color="error"
+      color="success"
       @click="toTop"
     >
       <v-icon>mdi-chevron-up</v-icon>
@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  name: 'TheLayoutToTopFab',
+  name: 'FabPageBack',
   data: () => ({
     fab: false,
   }),
@@ -28,8 +28,7 @@ export default {
       const top = window.pageYOffset || document.documentElement.offsetTop || 0;
       this.fab = top > 300;
     },
-    toTop() {
-      this.$router.push({ hash: '' });
+    toTop() { 
       this.$vuetify.goTo(0);
     },
   },

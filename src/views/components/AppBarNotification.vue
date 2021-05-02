@@ -6,10 +6,8 @@
       </v-btn>
     </template>
     <v-list class="pa-0" two-line subheader>
-      <v-subheader>Notifications</v-subheader>
-      <v-divider />
-      <!--<v-divider inset/>-->
-      <!--<v-subheader inset>Files</v-subheader>-->
+      <v-subheader> {{ $t("dashboard.notification") }}</v-subheader>
+      <v-divider /> 
       <v-list-item v-for="item in items" :key="item.title" avatar @click="1">
         <v-list-item-avatar>
           <v-icon :class="[item.iconClass]">
@@ -43,14 +41,14 @@
       items: [{
           icon: 'mdi-message',
           iconClass: 'blue white--text',
-          title: 'Vacation itinerary',
-          subtitle: 'Jan 20, 2014',
+          title: 'Mussum Ipsum, cacilds',
+          subtitle: 'Jan 20, 2021',
         },
         {
           icon: 'mdi-alarm',
           iconClass: 'amber white--text',
-          title: 'Kitchen remodel',
-          subtitle: 'Jan 10, 2014',
+          title: 'Posuere libero varius.',
+          subtitle: 'Jan 10, 2021',
         },
       ],
 

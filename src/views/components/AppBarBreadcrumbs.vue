@@ -14,6 +14,7 @@
 
 <script>
 const pathToRegexp = require('path');
+import $router from '@/router';
 export default {
   name: 'AppBarBreadcrumbs',
   data: () => ({
@@ -50,18 +51,11 @@ export default {
       const toPath = pathToRegexp.compile(path);
       return toPath(params);
     },
-    handleLink(item) {
-      console.groupCollapsed('handleLink');
-      const { redirect, path } = item;
-      console.log(`redirect=${redirect}, path=${path}`);
-      if (redirect) {
-        console.log('redirect');
-        this.$router.push(redirect);
-        console.groupEnd();
-        return;
-      }
-      this.$router.push(this.pathCompile(path));
-      console.groupEnd();
+    handleLink(item) { 
+      console.log(item.path)
+       $router.push({
+        path: item.path
+      }).catch(() => {});
     },
   },
 };

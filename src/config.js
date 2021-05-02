@@ -46,7 +46,7 @@ module.exports = {
     navbar: {
       show: true,
       dense: false,
-      logo: false,
+      logo: true,
     },
     fullscreen: {
       show: false,

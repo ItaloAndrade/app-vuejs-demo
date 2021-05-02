@@ -3,9 +3,9 @@
     <template v-slot:img="props">
       <v-img :gradient="`to bottom, ${barColor}`" v-bind="props"    />
     </template>
-    <perfect-scrollbar ref="scroll">
-      <v-divider class="mb-1" />
-      <v-list dense nav>
+    <perfect-scrollbar ref="scroll" >
+      <v-divider class="mb-1" v-if="navbarLogo" />
+      <v-list   nav   v-if="navbarLogo" :dense="toolbarDense">
         <v-list-item>
           <v-list-item-avatar class="align-self-center" color="white"  width = "50" height = "50" contain>
             <v-img :src="logoImg" width = "50" height = "50"   />
