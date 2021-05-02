@@ -180,7 +180,7 @@ export default {
     },
     /**ok */
  
-    ThemeToggle: async (context, payload) => {
+    themeToggle: async (context, payload) => {
       context.commit('THEME_TOGGLE', payload);
       await setVuetifyTheme(payload.index);
     },

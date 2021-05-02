@@ -50,7 +50,7 @@
 import {
     mapGetters
 } from 'vuex';
-import AppTheme from '@/views/pages/Theme';
+import AppTheme from '@/views/components/Theme';
 
 export default {
     name: 'FabhemaRight',

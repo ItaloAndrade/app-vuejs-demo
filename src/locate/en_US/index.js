@@ -39,6 +39,6 @@ export default {
     settingsBtn : 'Setting btn',
     footer : 'Footer',
     dark : 'Dark Mode',
-    theme : 'Temas  😎 !'
+    theme : 'Themes😎 !'
   }
 };

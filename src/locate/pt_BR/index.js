@@ -38,6 +38,6 @@ export default {
     settingsBtn : 'Botão Config',
     footer : 'Rodapé',
     dark : 'Modo Dark',
-    theme : 'Themas  😎 !'
+    theme : 'Temas 😎 !'
   }
 };

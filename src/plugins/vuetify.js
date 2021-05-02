@@ -29,7 +29,10 @@ const vuetify = new Vuetify({
 
 
 export async function setVuetifyTheme(index) {
-  if (vuetify.framework.theme.themes !== themes[index]) { 
+ 
+  if (vuetify.framework.theme.themes !== themes[index]) {  
+    console.log(themes[index].light)
+    console.log(themes[index].dark)
     vuetify.framework.theme.themes.light = themes[index].light || themes[0].light;
     vuetify.framework.theme.themes.dark = themes[index].dark || themes[0].dark;
   }  

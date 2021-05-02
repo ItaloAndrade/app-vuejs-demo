@@ -4,8 +4,9 @@
       v-for="(item, index) in themes"
       :key="index"
       :cols="cols"
-      :class="['text-center', {'elevation-5 pa-2': themeIndex === index}]"
-      @click.stop="toggleTheme(index)"
+      class="point-click"
+      :class="['text-center', {'elevation-20 pa-2 input-has-value-style': themeIndex === index}] "
+      @click="toggleTheme(index)"
     >
       <div
         v-for="(color, title) in item.light"
@@ -35,14 +36,24 @@ export default {
     themes,
   }),
   computed: {
-    ...mapGetters([
+    ...mapGetters('settings',[
       'themeIndex',
     ]),
   },
   methods: {
     toggleTheme(index) {
-      this.$store.dispatch('ThemeToggle', { index, vuetify: this.$vuetify });
+      this.$store.dispatch('settings/themeToggle', { index, vuetify: this.$vuetify });
     },
   },
 };
 </script>
+<style lang="sass"  scoped>
+ 
+   @import '~vuetify/src/styles/styles.sass'
+  .point-click
+    cursor: pointer
+
+  .input-has-value-style 
+    border: 3px solid  var(--v-primary-base)
+
+</style>
