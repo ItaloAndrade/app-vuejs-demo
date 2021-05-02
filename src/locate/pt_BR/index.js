@@ -16,7 +16,8 @@ export default {
     back: 'Voltar',
   }, 
   errors: { 
-    back: 'Get me out of here 😩😩!',
+    whoops : 'Eitaaa...',
+    back: 'Sair Daqui!',
     301: 'Movido permanentemente 😩😩!',
     401: 'Não autorizado 😩😩!',
     403: 'Proibido 😩😩!',

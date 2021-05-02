@@ -92,12 +92,12 @@ export default {
                 },
                 {
                     value: this.footerShow,
-                    label: `${this.$t('settings.footer')}: 'off'`,
+                    label: `${this.$t('settings.footer')}:  ${this.footerShow ? 'on' : 'off'}`,
                     change: this.toggleFooterToggle,
                 },
                 {
                     value: this.themeDark,
-                    label: `${this.$t('settings.dark')}: 'off'`,
+                    label: `${this.$t('settings.dark')}:  ${this.themeDark ? 'on' : 'off'}`,
                     change: this.toogleThemeDark,
                 },
             ];
