@@ -1,11 +1,7 @@
 import forEach from 'lodash/forEach'
 import isArray from 'lodash/isArray'
 
-/**
- * Return message for HTTP status code
- * @param {number} status - HTTP status code
- * @returns {string} Message of network operation
- */
+
 function _getStatusMessage (status) {
   let message = ''
   switch (status) {
@@ -40,12 +36,7 @@ function _getResponseErrorMessage (error) {
   return error.message === 'Network Error' ? 'Oops! Network Error. Try again later' : error.message
 }
 
-/**
- * Create instant, which represent response object
- * @param {Object} [data] - custom data
- * @param {Object} [response] - axios response object
- * @param {String} [message] - custom message to display
- */
+ 
 export class ResponseWrapper {
   constructor (response, data = {}, message) {
     this.data = data
@@ -56,11 +47,7 @@ export class ResponseWrapper {
   }
 }
 
-/**
- * Create instant, which represent error object
- * @param {Object} [error] - axios error object
- * @param {String} [message] - custom message to display
- */
+ 
 export class ErrorWrapper extends Error {
   constructor (error, message) { 
     super()
@@ -73,12 +60,7 @@ export class ErrorWrapper extends Error {
   }
 }
 
-/**
- * Uses to clear request data before send it
- * Client shouldn't change entity id
- * @param data
- * @return {{}}
- */
+ 
 export function clearData (data) {
   const result = {}
   forEach(data, (item, propName) => {

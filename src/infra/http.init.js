@@ -1,5 +1,4 @@
 import axios from 'axios'
-
 import {AuthService}  from '@/services/auth.service'; 
 
 export class Http {

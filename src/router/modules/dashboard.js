@@ -15,12 +15,24 @@ const dashboardRouter = [{
         meta: { 
             icon: 'mdi-view-dashboard',
             title : 'route.dashboard',
-            roles : ['superadmin'],
-            primary : true,
+            roles : ['superadmin'], 
             hasSubMenu: false, 
             isAuth: true,
         },
-    }, ],
+    },
+    {
+        path: '/favoritos',
+        component: () => import('@/views/pages/Favorite'),
+        name: 'Favoritos',
+        hidden: false,
+        meta: { 
+            icon: 'mdi-heart',
+            title : 'route.favorites',
+            roles : ['superadmin'], 
+            hasSubMenu: false, 
+            isAuth: true,
+        },
+    } ],
 }]
 
 

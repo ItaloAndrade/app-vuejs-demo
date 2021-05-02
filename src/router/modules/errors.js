@@ -6,7 +6,7 @@ const errorsRouter = [ {
   meta: {
       isAuth: true, /** indica se é necessário validação , filhos herdam o pai */
       hasSubMenu: true, /** indica se  o mesmo deve ser formado por menu com sub-menu , true para submenu */
-      icon: 'mdi-view-dashboard',
+      icon: 'mdi-alert-circle',
       title : 'route.errors',
       roles : ['*'],
   },

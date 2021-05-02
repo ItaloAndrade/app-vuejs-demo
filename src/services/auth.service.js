@@ -89,5 +89,4 @@ export class AuthService {
 
   static getToken = () => String(localStorage.getItem('marvelToken'))
 
-
 }
