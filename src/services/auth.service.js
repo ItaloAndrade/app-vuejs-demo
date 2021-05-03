@@ -31,8 +31,7 @@ export class AuthService {
           logout: false,
           roles: ['admin']},
           ...response.data.data.user
-      }
-      console.log('login '+JSON.stringify(user)) ;
+      } 
       return new ResponseWrapper(response, user);
     } catch (error) {
       const message = error.response.data ? error.response.data.error : error.response.statusText
@@ -65,8 +64,7 @@ export class AuthService {
            logout: false,
            roles: ['admin']},
            ...response.data.data.user
-       } 
-      console.log('register '+JSON.stringify(user)) ;
+       }  
       return new ResponseWrapper(response, user);
     } catch (error) {
       const message = error.response.data ? error.response.data.error : error.response.statusText
@@ -83,7 +81,7 @@ export class AuthService {
     }
   }
 
-  static hasToken = () =>!isNullUndefinedEmpty(this.getToken)
+  static hasToken = () =>!(isNullUndefinedEmpty(this.getToken()))
      
   static setToken = (status) => localStorage.setItem('marvelToken', status)
 

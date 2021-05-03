@@ -38,7 +38,7 @@
   export default {
     name: "SignIn",
     components: {
-      BaseMaterialCard: () => import('@/views/components/MaterialCard'),
+      BaseMaterialCard: () => import('@/views/components/ProfileCard'),
     },
     data: () => ({
       valid: true,

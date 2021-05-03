@@ -1,4 +1,7 @@
 <template>
+ 
+ 
+ 
   <app-center>
     <template v-slot:page>
       <h1 class="display-2 primary--text">

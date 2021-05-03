@@ -1,14 +1,14 @@
 <template>
     <div> 
-        <ItemComic></ItemComic>
+        <characters></characters>
     </div>
-</template>
+</template>  
 
-<script>
+<script> 
     export default {
         components: {
-            ItemComic: () => import('@/views/components/ItemComic')
-        }
+            Characters: () => import('@/views/components/CharactersCard')
+        }       
     }
 </script>
 

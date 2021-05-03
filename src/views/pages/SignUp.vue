@@ -76,7 +76,7 @@ import $router from '@/router';
 
 export default {
   components: {
-    BaseMaterialCard: () => import("@/views/components/MaterialCard"),
+    BaseMaterialCard: () => import("@/views/components/ProfileCard"),
   },
   name: "SignUp",
   data: () => ({

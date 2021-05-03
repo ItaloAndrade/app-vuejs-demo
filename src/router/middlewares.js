@@ -28,8 +28,7 @@ export async function initCurrentUserStateMiddleware(to, from, next) {
 
    
   NProgress.start();
-  const isAuthRoute = to.matched.some(item => item.meta.isAuth)
-   
+  const isAuthRoute = to.matched.some(item => item.meta.isAuth)  
   if (!isAuthRoute) {
     next();
   } else if (AuthService.hasToken()
@@ -53,8 +52,10 @@ export async function initCurrentUserStateMiddleware(to, from, next) {
  * 
  */
 export async function buildMenu(to, from, next) {
-
-  await $store.dispatch('user/generateMenu', routes);
+    
+  if (AuthService.hasToken()){
+    await $store.dispatch('user/generateMenu', routes);
+  }
   next();
 }
 
@@ -65,13 +66,15 @@ export async function buildMenu(to, from, next) {
  * @param  {} next
  */
 export function checkAccessMiddleware(to, from, next) {
-  
+   
   const isAuthRoute = to.matched.some(item => item.meta.isAuth)
+  
   if (!isAuthRoute) next();
   else if (!$store.getters["user/id"]) {
     next({
-      name: 'SignIn'
+       path :'/'
     });
+    NProgress.done();
   } else {
     next();
   }
@@ -84,6 +87,7 @@ export function checkAccessMiddleware(to, from, next) {
  * @param  {} next
  */
 export function setPageTitleMiddleware(to, from, next) {
+   
   const pageTitle = to.matched.find(item => item.meta.title)
   if (pageTitle) window.document.title = i18n.t(pageTitle.meta.title)
   next();
@@ -93,6 +97,7 @@ export function setPageTitleMiddleware(to, from, next) {
  * set titulo da pagina de acordo com meta
  */
 export function closeNProgress() {
+   
   setTimeout(() => {
     NProgress.done();
   }, 500);

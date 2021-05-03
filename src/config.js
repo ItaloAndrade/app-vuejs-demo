@@ -26,7 +26,7 @@ module.exports = {
     },
     theme: {
       index: 0,
-      dark: true,
+      dark: false,
     },
   }
 };

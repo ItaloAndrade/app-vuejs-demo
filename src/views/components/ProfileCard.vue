@@ -11,7 +11,7 @@
 
 <script>
   export default {
-    name: 'MaterialCard',
+    name: 'ProfileCard',
     props: {
       avatar: {
         type: String,

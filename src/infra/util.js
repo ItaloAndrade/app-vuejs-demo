@@ -90,4 +90,4 @@ export function clearData (data) {
 
 export function isNullUndefined (value) {return Boolean(undefined  == value ||  value == null  || value == 'undefined')}
 
-export function isNullUndefinedEmpty  (value) {return Boolean(undefined  == value ||  value == null  || value == 'undefined' ||  value == '')}
+export function isNullUndefinedEmpty  (value) {return Boolean(undefined  == value ||  value == null  ||value == 'null'  || value == 'undefined' ||  value == '')}
