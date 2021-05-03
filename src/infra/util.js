@@ -29,11 +29,25 @@ function _getStatusMessage (status) {
   }
   return message
 }
+ 
 
 function _getResponseErrorMessage (error) {
   if (error.response && error.response.data) return error.response.data.message
   if (error.response && error.response.statusText) return error.response.statusText
   return error.message === 'Network Error' ? 'Oops! Network Error. Try again later' : error.message
+}
+
+
+export class ResponseWrapperMarvel {
+  constructor (response) { 
+    this.success = response.status
+    this.code = response.code ,
+    this.offset =   response.data.offset ,
+    this.limit =   response.data.limit ,
+    this.total =   response.data.total ,
+    this.count =   response.data.count ,
+    this.characters = response.data.results
+  }
 }
 
  

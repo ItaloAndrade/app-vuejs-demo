@@ -41,7 +41,7 @@ export default {
       name: '',
       email: '',
       token: '',
-      avatar: 'https://avatars.githubusercontent.com/u/2882342?s=60&v=4',
+      avatar:  '',
     }
   },
   getters: {
@@ -54,7 +54,7 @@ export default {
     },
     name: (state) => state.user.name,
     email: (state) => state.user.email,
-    avatar: (state) => state.user.avatar,
+    avatar: (state) => state.user.email == 'italorio@gmail.com' ?  'https://avatars.githubusercontent.com/u/2882342?s=60&v=4': state.user.avatar,
     id: (state) => state.user.id
   },
   mutations: {
