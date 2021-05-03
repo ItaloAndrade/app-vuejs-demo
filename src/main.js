@@ -12,8 +12,7 @@ import './registerServiceWorker'
 import i18n from './locate/index'; // Internationalization
 import '@/scss/style.scss'
 import PerfectScrollbar from 'vue2-perfect-scrollbar'
-import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css' 
-
+import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css'   
 Vue.config.productionTip = false
 
 new Vue({
@@ -21,6 +20,6 @@ new Vue({
   store,
   vuetify,
   PerfectScrollbar,
-  i18n,
+  i18n, 
   render: h => h(App)
 }).$mount('#app')
