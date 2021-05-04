@@ -44,12 +44,12 @@
       valid: true,
       loading: false,
       model: {
-        email: '',
+        email: 'demo@gmail.com',
         emailRules: [
           v => !!v || 'E-mail é obrigatória !',
           v => /.+@.+\..+/.test(v) || 'E-mail inválido',
         ],
-        password: '',
+        password: 'demo*29',
         passwordRules: [
           v => !!v || 'Senha é obrigatória !',
           v => (v && v.length >= 3) || 'Senha deve ter mínimo de 3 caracteres !',
