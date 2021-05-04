@@ -4,7 +4,7 @@ import {
 import {
   AuthService
 } from '@/services/auth.service';
-
+import $store from '@/store'
 import {
   isNullUndefinedEmpty
 } from "@/infra/util";
@@ -98,6 +98,7 @@ export default {
           });
 
           await commit('SET_CURRENT_USER', user.data);
+          setTimeout(async() =>{  await $store.dispatch('favorito/get');},200);
         }
       } catch (err) {
 
@@ -124,6 +125,7 @@ export default {
         } 
       
         commit('SET_CURRENT_USER', userChange);
+        setTimeout(async() =>{  await $store.dispatch('favorito/get');},200);
       } catch (err) {
         console.warn('[vuex.auth] RefreshInfoUser', err);
         commit('snackbar/SHOW_MESSAGE', {
@@ -141,7 +143,7 @@ export default {
       try {
         AuthService.logout();
         await commit('SET_CURRENT_USER', {});
-
+        await $store.dispatch('favorito/clean');
       } catch (err) {
         console.warn('[vuex.user] LogOut', err);
       }
@@ -164,7 +166,7 @@ export default {
           passwordConfirm: payload.password
         }); 
         await commit('SET_CURRENT_USER', response.data);
-
+        setTimeout(async() =>{  await $store.dispatch('favorito/get');},200);
       } catch (err) {
         console.warn('[vuex.auth] Login', err);
         commit('snackbar/SHOW_MESSAGE', {

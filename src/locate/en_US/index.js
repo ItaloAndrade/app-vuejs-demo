@@ -40,6 +40,9 @@ export default {
     settingsBtn : 'Setting btn',
     footer : 'Footer',
     dark : 'Dark Mode',
-    theme : 'Themes😎 !'
+    theme : 'Themes 🎉...'
+  },
+  favorites : {
+    title : 'Favorites Added '
   }
 };

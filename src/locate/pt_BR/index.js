@@ -39,6 +39,9 @@ export default {
     settingsBtn : 'Botão Config',
     footer : 'Rodapé',
     dark : 'Modo Dark',
-    theme : 'Temas 😎 !'
+    theme : 'Temas  🎉...'
+  },
+  favorites : {
+    title : 'Favoritos Adicionados '
   }
 };

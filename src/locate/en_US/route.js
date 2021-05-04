@@ -1,6 +1,6 @@
 export default {
   dashboard: 'Dashboard', 
-  errors: 'Erros', 
+  errors: 'Sub Demo', 
   favorites: 'Favorites', 
   errorPages: {
     page301: 'Error 301',

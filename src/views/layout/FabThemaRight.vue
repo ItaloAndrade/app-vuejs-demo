@@ -1,6 +1,6 @@
 <template>
 <v-main class="layout-fab">
-    <v-btn v-if="settingsPanelBtn" small fab falt fixed rota top="top" right="right" color="success" class="layout-fab__btn" @click="toggleSettingsPanel">
+    <v-btn v-if="settingsPanelBtn" small fab falt fixed rota top="top" right="right" color="primary" class="layout-fab__btn" @click="toggleSettingsPanel">
         <v-icon>mdi-settings</v-icon>
     </v-btn>
     <v-navigation-drawer right disable-resize-watcher temporary fixed app :value="settingsPanelShow" @input="stateSettingsPanel">
@@ -148,9 +148,9 @@ export default {
 .layout-fab__btn {
     margin-top: 4px;
     /* fixme: vertical align */
-    top: 50% !important;
+    top:30% !important;
     right: 0 !important;
-    border-radius: 0 !important;
+    border-radius: 3px !important;
 }
 
 .layout-fab__switch {

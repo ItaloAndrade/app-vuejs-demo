@@ -14,7 +14,7 @@ const vuetify = new Vuetify({
     options: {
       customProperties: true,
     },
-    dark: true,
+    dark:  settings.theme.dark,
     themes: themes[0],
   },
   icons: {

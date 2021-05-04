@@ -26,7 +26,6 @@ NProgress.configure({
  */
 export async function initCurrentUserStateMiddleware(to, from, next) {
 
-   
   NProgress.start();
   const isAuthRoute = to.matched.some(item => item.meta.isAuth)  
   if (!isAuthRoute) {
@@ -97,7 +96,6 @@ export function setPageTitleMiddleware(to, from, next) {
  * set titulo da pagina de acordo com meta
  */
 export function closeNProgress() {
-   
   setTimeout(() => {
     NProgress.done();
   }, 500);

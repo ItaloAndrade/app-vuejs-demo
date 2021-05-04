@@ -1,6 +1,6 @@
 <template>
 <v-container justify="center" fluid>
-    <v-row dense>
+    <v-row>
         <v-col @mouseover="show = i;" @mouseout="show = false;" v-for="(card, i) in getMarvel.characters" :key="i" :cols="3" class="something-i-need-to-animate">
             <v-card class="pa-3 elevation-3 mt-10">
                 <div class="d-flex grow flex-wrap ">
@@ -9,14 +9,13 @@
                 </div>
                   <div class="body-1 ma-2"> 
                     {{card.name}}
-                </div>
-                  
+                </div> 
                 <v-card-actions> 
                      <div class="body-2 ma-2"> 
                     {{ new Date(card.modified ) | dateFormat('DD/MM/YYYY') }}
                 </div>  
                     <v-spacer></v-spacer>
-                    <v-btn :elevation="10" class="mx-2" fab dark small color="success" >
+                    <v-btn :elevation="10" @click="addFavorito(card)" class="mx-2" fab dark small color="primary" >
                         <v-icon>
                             mdi-heart
                         </v-icon>
@@ -72,7 +71,9 @@ export default {
             refreshCharacters: "marvel/refreshCharacters",
             setMarvel: "marvel/setMarvel",
         }),
-
+        ...mapActions({
+            addFavorito: "favorito/add", 
+        }),
         async getMore() {
             let currentList = this.getMarvel;
             await this.refreshCharacters(currentList);
@@ -102,13 +103,12 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
-
+<style lang="sass" scoped> 
     @import '~vuetify/src/styles/styles.sass'
 
     .head-card 
      background-color: var(--v-success-base) !important 
-     border-radius: 4px 
+     border-radius: 18px 
      top: -35px !important
      position: relative !important
 </style>

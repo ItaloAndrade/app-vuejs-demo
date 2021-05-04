@@ -4,8 +4,8 @@ import colors from 'vuetify/es5/util/colors';
 const themes = [
   {
     light: {
-      primary: '#1976D2',
-      secondary: '#424242',
+      primary: '#f50057',
+      secondary: '#424242',   
       accent: '#82B1FF',
       success: '#9000fd',
       error: '#FF5252',

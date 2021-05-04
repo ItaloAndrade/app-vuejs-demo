@@ -1,7 +1,8 @@
 import qs from 'qs' 
 import { Http } from '../infra/http.init'
 import { ResponseWrapper, ErrorWrapper } from '../infra/util'
-
+import NProgress from 'nprogress'; // progress bar
+import 'nprogress/nprogress.css'; // progress bar style
 export class BaseService {
   
    /**
@@ -55,13 +56,14 @@ export class BaseService {
       
     }
   }
-
  
-
   static async create (data = {}) {
-    
-    try {
+    try { 
+      NProgress.start();
       const response = await this.request({ auth: true }).post(`${this.entity}`, data)
+      setTimeout(() => {
+        NProgress.done();
+      }, 500);
       return new ResponseWrapper(response, response.data.data)
     } catch (error) {
       throw new ErrorWrapper(error)

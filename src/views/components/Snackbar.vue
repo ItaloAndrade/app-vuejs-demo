@@ -1,7 +1,7 @@
 <template>
   <div name="snackbars">
     <v-snackbar shaped absolute  elevation="24" v-model="show" :color="color" :timeout="timeout"
-     right  bottom>
+     right  top>
       {{ message }}
 
       <template v-slot:action="{ attrs }">
@@ -17,11 +17,12 @@
 export default {
   created() {
     this.$store.subscribe((mutation, state) => {
+       
       if (mutation.type === "snackbar/SHOW_MESSAGE") {
         this.message = state.snackbar.message;
         this.color = state.snackbar.color;
         this.timeout = state.snackbar.timeout;
-        this.show = true;
+        this.show = true; 
       }
     });
   },
