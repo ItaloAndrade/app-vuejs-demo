@@ -15,8 +15,8 @@
                     {{ new Date(card.modified ) | dateFormat('DD/MM/YYYY') }}
                 </div>  
                     <v-spacer></v-spacer>
-                    <v-btn :elevation="10" @click="addFavorito(card)" class="mx-2" fab dark small color="primary" >
-                        <v-icon>
+                    <v-btn   :elevation="10" @click="addFavorito(card)" class="mx-2" fab dark small color="primary" >
+                        <v-icon :class="{'btn-disable': !card.isFavorite }" >
                             mdi-heart
                         </v-icon>
                     </v-btn>
@@ -111,4 +111,8 @@ export default {
      border-radius: 18px 
      top: -35px !important
      position: relative !important
+
+    .btn-disable
+      color: rgb(206 199 199 / 50%) !important
+
 </style>

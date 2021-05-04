@@ -13,7 +13,7 @@ const themes = [
       info: '#2196F3',
     },
     dark: {
-      primary: '#2196F3',
+      primary: '#f50057',
       secondary: '#424242',
       accent: '#FF4081',
       success: '#9000fd',

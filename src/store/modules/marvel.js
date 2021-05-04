@@ -1,5 +1,6 @@
 import  {MarvelService}  from '@/services/marver.service';
-
+import $store from '@/store'
+import {  isNullUndefined } from "@/infra/util";
 
 export default {
     namespaced: true,
@@ -16,8 +17,7 @@ export default {
         getMarvel: (state) => state.marvel
     },
     mutations: {
-        SET_CHARACTERS(state, payload) { 
-            // eslint-disable-next-line no-debugger 
+        SET_CHARACTERS(state, payload) {  
             state.marvel.offset= payload.offset; 
             state.marvel.limit= payload.limit; 
             state.marvel.total= payload.total; 
@@ -34,7 +34,12 @@ export default {
                 limit: payload.limit,
                 offset: payload.offset + 10, 
             };
-            const result = await MarvelService.getCharacters(parameter);   
+            let result = await MarvelService.getCharacters(parameter);   
+            const listfavoritos = $store.getters["favorito/getFavoritos"]  
+            result.characters = result.characters.map(hero=> {
+                hero = {...hero, isFavorite : !(isNullUndefined(listfavoritos.find(favo=>hero.id ==favo.idComic)))}
+                return hero;
+            }); 
             result.characters = [...currentlist,...result.characters];
             result.count = result.characters.length;
             commit('SET_CHARACTERS', {...result});

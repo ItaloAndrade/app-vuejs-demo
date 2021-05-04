@@ -1,6 +1,20 @@
 <template>
-<v-card elevation="12">
-    <div dark class="elevation-23 top-section">
+<div  class="text-center" >
+    
+      <template   class="text-justify" v-if="!getFavoritos.length">
+        
+      <h4  class="display-1 primary--text ">
+          <v-icon size="52" color="primary"  >
+                             mdi-heart
+                        </v-icon > Sem Favoritos  ....
+      </h4>
+   
+      
+    </template>
+    <v-card elevation="12" v-else>
+
+    
+    <div  dark  class="elevation-23 top-section " >
            
         <div class="subtitle-1 color-font"> <v-icon class="color-font"  >
                             mdi-heart
@@ -43,15 +57,18 @@
         </v-simple-table>
     </v-container>
 </v-card>
+</div>
+
 </template>
 
 <script>
 import { 
     mapGetters,mapActions
-} from "vuex";
+} from "vuex"; 
 export default {
     name: 'TableFavorite',
-    components: {},
+    components: { 
+    },
     methods:{
         ...mapActions({
         'deleteItem': 'favorito/delete'
