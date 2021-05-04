@@ -1,11 +1,7 @@
 import forEach from 'lodash/forEach'
 import isArray from 'lodash/isArray'
 
-/**
- * Return message for HTTP status code
- * @param {number} status - HTTP status code
- * @returns {string} Message of network operation
- */
+
 function _getStatusMessage (status) {
   let message = ''
   switch (status) {
@@ -33,6 +29,7 @@ function _getStatusMessage (status) {
   }
   return message
 }
+ 
 
 function _getResponseErrorMessage (error) {
   if (error.response && error.response.data) return error.response.data.message
@@ -40,12 +37,20 @@ function _getResponseErrorMessage (error) {
   return error.message === 'Network Error' ? 'Oops! Network Error. Try again later' : error.message
 }
 
-/**
- * Create instant, which represent response object
- * @param {Object} [data] - custom data
- * @param {Object} [response] - axios response object
- * @param {String} [message] - custom message to display
- */
+
+export class ResponseWrapperMarvel {
+  constructor (response) { 
+    this.success = response.status
+    this.code = response.code ,
+    this.offset =   response.data.offset ,
+    this.limit =   response.data.limit ,
+    this.total =   response.data.total ,
+    this.count =   response.data.count ,
+    this.characters = response.data.results
+  }
+}
+
+ 
 export class ResponseWrapper {
   constructor (response, data = {}, message) {
     this.data = data
@@ -56,13 +61,9 @@ export class ResponseWrapper {
   }
 }
 
-/**
- * Create instant, which represent error object
- * @param {Object} [error] - axios error object
- * @param {String} [message] - custom message to display
- */
+ 
 export class ErrorWrapper extends Error {
-  constructor (error, message) {
+  constructor (error, message) { 
     super()
     this.success = error.response ? error.response.data.success : false
     this.meta = error.response ? error.response.data.meta : false
@@ -73,12 +74,7 @@ export class ErrorWrapper extends Error {
   }
 }
 
-/**
- * Uses to clear request data before send it
- * Client shouldn't change entity id
- * @param data
- * @return {{}}
- */
+ 
 export function clearData (data) {
   const result = {}
   forEach(data, (item, propName) => {
@@ -91,3 +87,7 @@ export function clearData (data) {
   })
   return result
 }
+
+export function isNullUndefined (value) {return Boolean(undefined  == value ||  value == null  || value == 'undefined')}
+
+export function isNullUndefinedEmpty  (value) {return Boolean(undefined  == value ||  value == null  ||value == 'null'  || value == 'undefined' ||  value == '')}

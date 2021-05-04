@@ -1,19 +1,20 @@
-import qs from 'qs'
-import { assert } from '@/core'
-
-import { Http } from './http.init'
-import { ResponseWrapper, ErrorWrapper } from './util'
-
+import qs from 'qs' 
+import { Http } from '../infra/http.init'
+import { ResponseWrapper, ErrorWrapper } from '../infra/util'
+import NProgress from 'nprogress'; // progress bar
+import 'nprogress/nprogress.css'; // progress bar style
 export class BaseService {
-  static get entity () {
-    throw new Error('entity getter not defined')
-  }
-  /**
+  
+   /**
    * ------------------------------
    * @HELPERS
    * ------------------------------
    */
 
+  static get entity () {
+    throw new Error('entity getter not defined')
+  }
+ 
   static request (status = { auth: false }) {
     return new Http(status)
   }
@@ -32,66 +33,37 @@ export class BaseService {
     })
   }
 
-  /**
-   * ------------------------------
-   * @API_CALLS_PUBLIC
-   * ------------------------------
-   */
-
-  static async getListPublic (parameters = {}) {
-    assert.object(parameters)
-
+  static async getByParameters (parameters = {}) {
+   
     const params = { ...parameters }
 
     try {
-      const response = await this.request().get(`${this.entity}`, { params })
-      const data = {
-        content: response.data.data,
-        total: Number(response.headers['x-total-count'])
-      }
-
-      return new ResponseWrapper(response, data)
+      const response = await this.request({auth: true}).get(`${this.entity}`, { params })
+      return new ResponseWrapper(response, response.data.data) 
     } catch (error) {
       const message = error.response.data ? error.response.data.error : error.response.statusText
       throw new ErrorWrapper(error, message)
     }
   }
 
-  static async getByIdPublic (id = window.required()) {
-    assert.id(id, { required: true })
-
+  static async getById (id = window.required()) {
     try {
-      const response = await this.request().get(`${this.entity}/${id}`)
+      const response = await this.request({auth: true}).get(`${this.entity}/${id}`)
       return new ResponseWrapper(response, response.data.data)
     } catch (error) {
       const message = error.response.data ? error.response.data.error : error.response.statusText
       throw new ErrorWrapper(error, message)
+      
     }
   }
-
-  /**
-   * ------------------------------
-   * @API_CALLS_PRIVATE
-   * ------------------------------
-   */
-
-  static async getById (id) {
-    assert.id(id, { required: true })
-
-    try {
-      const response = await this.request({ auth: true }).get(`${this.entity}/${id}`)
-      return new ResponseWrapper(response, response.data.data)
-    } catch (error) {
-      const message = error.response.data ? error.response.data.error : error.response.statusText
-      throw new ErrorWrapper(error, message)
-    }
-  }
-
+ 
   static async create (data = {}) {
-    assert.object(data, { required: true })
-
-    try {
+    try { 
+      NProgress.start();
       const response = await this.request({ auth: true }).post(`${this.entity}`, data)
+      setTimeout(() => {
+        NProgress.done();
+      }, 500);
       return new ResponseWrapper(response, response.data.data)
     } catch (error) {
       throw new ErrorWrapper(error)
@@ -99,9 +71,7 @@ export class BaseService {
   }
 
   static async update (id, data = {}) {
-    assert.id(id, { required: true })
-    assert.object(data, { required: true })
-
+   
     try {
       const response = await this.request({ auth: true }).patch(`${this.entity}/${id}`, data)
       return new ResponseWrapper(response, response.data.data)
@@ -111,8 +81,7 @@ export class BaseService {
   }
 
   static async remove (id) {
-    assert.id(id, { required: true })
-
+    
     try {
       const response = await this.request({ auth: true }).delete(`${this.entity}/${id}`)
       return new ResponseWrapper(response, response.data.data)

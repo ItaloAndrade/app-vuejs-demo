@@ -1,8 +1,8 @@
 <template>
   <v-card>
     <div class="d-flex flex-row">
-      <v-avatar v-if="avatar" :size="size"  class="mx-auto v-card-material-avatar elevation-20">
-        <v-img  min-width="200" :src="avatar" />
+      <v-avatar v-if="avatar" :size="size" class="mx-auto v-card-material-avatar elevation-20">
+        <v-img  max-width="85" :src="avatar" />
       </v-avatar>
     </div>
     <slot />
@@ -11,7 +11,7 @@
 
 <script>
   export default {
-    name: 'MaterialCard',
+    name: 'ProfileCard',
     props: {
       avatar: {
         type: String,
@@ -19,7 +19,7 @@
       },
       size: {
         type: Number,
-        default: 150,
+        default: 100,
       },
     },
     computed: {},
@@ -27,8 +27,8 @@
 </script>
 
 <style lang="sass" scoped>
-  .v-card-material-avatar
-    position: relative
-    top: -64px
-    margin-bottom: -32px
+  .v-card-material-avatar 
+    position: relative 
+    top: -64px 
+    margin-bottom: -32px  
 </style>

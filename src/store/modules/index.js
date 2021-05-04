@@ -1,11 +1,13 @@
-import auth from './auth'
-import user from './user'
-import dom from './dom'
-import toast from './toast'
+import user from './auth';
+import snackbar from './snackbar'; 
+import settings from './settings';
+import marvel from "./marvel";
+import favorito from "./favorito";
 
 export default {
-  auth,
-  user,
-  dom,
-  toast
+  user, 
+  snackbar, 
+  settings,
+  marvel ,
+  favorito
 }

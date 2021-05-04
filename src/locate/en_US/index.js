@@ -1,62 +1,48 @@
-import route from './route.js'; 
 
+import route from './route.js'; 
 export default {
   route, 
-  toolbar: {
-    appname: 'Application',
-    settings: 'Settings',
-    profile: 'Profile',
-    logout: 'Logout',
+  dashboard:{
+    notification : 'Notification'
   },
-  settings: {
-    title: 'Theme Settings',
-    default: 'Set Default',
-    version: 'Version',
-    position: 'Position of elements',
-    theme: 'Theme',
-    dark: 'Dark theme',
-    toolbarDense: 'Toolbar dense',
-    navbarDense: 'Navbar dense',
-    navbarLogo: 'Navbar logo',
-    settingsBtn: 'Setting btn',
-    footer: 'Footer',
-  },
-  login: {
-    titleIn: 'Sing In Form',
-    titleUn: 'Sing Un Form',
-    singIn: 'Sing in',
-    singUp: 'Sing up',
+  auth: {
     email: 'Email',
-    password: 'Password',
+    name: 'Name',
+    password: 'Passwords',
     confirm: 'Confirm',
+    labelgoregister: 'You dont have an account',
+    goregister: 'Register',
+    btnregister: 'Create Account',
+    back: 'Back',
+  }, 
+  errors: { 
+    whoops : 'Eitaaa...',
+    back: 'Get out of here!',
+    301: 'Moved Permanently 😩😩!',
+    401: 'Unauthorized 😩😩!',
+    403: 'Forbidden 😩😩!',
+    404: 'Not Found 😩😩!',
+    500: 'Internal Server Error 😩😩!',
   },
-  errors: {
-    whoops: 'Whoops',
-    back: 'Get me out of here!',
-    301: 'Moved Permanently',
-    401: 'Unauthorized',
-    403: 'Forbidden',
-    404: 'Not Found',
-    500: 'Internal Server Error',
+  toolbar : {
+    profile : 'Profile',
+    settings : 'Settings',
+    logout : 'Logout'
   },
-  guide: {
-    description: 'The guide page is useful for some people who entered the project for '
-      + 'the first time. You can briefly introduce the features of the project. Demo is based on',
-    button: 'Show Guide',
+  settings : {
+    title :'Theme Settings',
+    default : 'Restore' ,
+    version : 'Version ',
+    configlayout : 'Custom Layout',
+    toolbarDense : 'Toolbar  Dense',
+    navbarDense : 'NavBar  Dense',
+    navbarLogo : 'Show NavBar',
+    settingsBtn : 'Setting btn',
+    footer : 'Footer',
+    dark : 'Dark Mode',
+    theme : 'Themes 🎉...'
   },
-  ui: {
-    switch: 'Switch Language',
-    theme: 'Switch Theme',
-    success: 'Success',
-    error: 'Error',
-    warning: 'Warning',
-    info: 'Info',
-    primary: 'Primary',
-    secondary: 'Secondary',
-    default: 'Default',
-    accent: 'Accent',
-    firstName: 'First Name',
-    lastName: 'Last Name',
-    email: 'E-mail',
-  },
+  favorites : {
+    title : 'Favorites Added '
+  }
 };

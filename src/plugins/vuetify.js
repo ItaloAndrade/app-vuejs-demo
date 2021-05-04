@@ -14,7 +14,7 @@ const vuetify = new Vuetify({
     options: {
       customProperties: true,
     },
-    dark: false,
+    dark:  settings.theme.dark,
     themes: themes[0],
   },
   icons: {
@@ -27,28 +27,18 @@ const vuetify = new Vuetify({
   },
 });
 
-/**
- * Set theme with number for Vuetify class object
- *
- * @param {Number} index new value
- */
+
 export async function setVuetifyTheme(index) {
-  if (vuetify.framework.theme.themes !== themes[index]) {
-    console.log(`[Vuetify] Change theme to "${index}"`);
+ 
+  if (vuetify.framework.theme.themes !== themes[index]) {  
+    console.log(themes[index].light)
+    console.log(themes[index].dark)
     vuetify.framework.theme.themes.light = themes[index].light || themes[0].light;
     vuetify.framework.theme.themes.dark = themes[index].dark || themes[0].dark;
-  } else {
-    console.warn(`[Vuetify] "${index}" is current theme `);
-  }
+  }  
 }
 
-/**
- * Set the mode to dark/light for the Vuetify class object.
- *
- * @param {Boolean} dark new value
- */
-export async function setVuetifyThemeDark(dark) {
-  console.log(`[Vuetify] Change theme to "${dark ? 'dark' : 'light'}"`);
+export async function setVuetifyThemeDark(dark) { 
   vuetify.framework.theme.dark = dark;
 }
 

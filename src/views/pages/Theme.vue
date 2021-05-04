@@ -1,15 +1,13 @@
 <template>
-  <v-main class="pa-15">
-    <router-view /> 
-  </v-main>
+  <div></div>
 </template>
 
 <script>
 export default {
-name: 'Content',
+name:'Theme'
 }
 </script>
 
 <style>
- 
+
 </style>

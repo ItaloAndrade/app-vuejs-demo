@@ -1,64 +1,47 @@
-import route from './route.js';
-import components from '@/demo/locale/en_US/components';
 
+import route from './route.js'; 
 export default {
-  route,
-  components,
-  toolbar: {
-    appname: 'Application',
-    settings: 'Settings',
-    profile: 'Profile',
-    logout: 'Logout',
+  route, 
+  dashboard:{
+    notification : 'Notificações'
   },
-  settings: {
-    title: 'Theme Settings',
-    default: 'Set Default',
-    version: 'Version',
-    position: 'Position of elements',
-    theme: 'Theme',
-    dark: 'Dark theme',
-    toolbarDense: 'Toolbar dense',
-    navbarDense: 'Navbar dense',
-    navbarLogo: 'Navbar logo',
-    settingsBtn: 'Setting btn',
-    footer: 'Footer',
-  },
-  login: {
-    titleIn: 'Sing In Form',
-    titleUn: 'Sing Un Form',
-    singIn: 'Sing in',
-    singUp: 'Sing up',
-    email: 'Email',
-    password: 'Password',
-    confirm: 'Confirm',
-  },
-  errors: {
-    whoops: 'Whoops',
-    back: 'Get me out of here!',
-    301: 'Moved Permanently',
-    401: 'Unauthorized',
-    403: 'Forbidden',
-    404: 'Not Found',
-    500: 'Internal Server Error',
-  },
-  guide: {
-    description: 'The guide page is useful for some people who entered the project for '
-      + 'the first time. You can briefly introduce the features of the project. Demo is based on',
-    button: 'Show Guide',
-  },
-  ui: {
-    switch: 'Switch Language',
-    theme: 'Switch Theme',
-    success: 'Success',
-    error: 'Error',
-    warning: 'Warning',
-    info: 'Info',
-    primary: 'Primary',
-    secondary: 'Secondary',
-    default: 'Default',
-    accent: 'Accent',
-    firstName: 'First Name',
-    lastName: 'Last Name',
+  auth: {
     email: 'E-mail',
+    name: 'Nome',
+    password: 'Senhas',
+    confirm: 'Confirme',
+    labelgoregister: 'Você não tem uma conta',
+    goregister: 'Cadastre-se',
+    btnregister: 'Criar Conta',
+    back: 'Voltar',
+  }, 
+  errors: { 
+    whoops : 'Eitaaa...',
+    back: 'Sair Daqui!',
+    301: 'Movido permanentemente 😩😩!',
+    401: 'Não autorizado 😩😩!',
+    403: 'Proibido 😩😩!',
+    404: 'Não encontrado 😩😩!',
   },
+  toolbar : {
+    profile : 'Perfil',
+    settings : 'Configuração',
+    logout : 'Sair'
+  } ,
+   settings : {
+    title :'Personalizar o Temas' ,
+    default : 'Restaurar Padrão' ,
+    version : 'Versão',
+    configlayout : 'Personalizar Layout',
+    toolbarDense : 'Densidade Toolbar',
+    navbarDense : 'Densidade NavBar',
+    navbarLogo : 'Logo NavBar',
+    settingsBtn : 'Botão Config',
+    footer : 'Rodapé',
+    dark : 'Modo Dark',
+    theme : 'Temas  🎉...'
+  },
+  favorites : {
+    title : 'Favoritos Adicionados '
+  }
 };
