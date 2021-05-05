@@ -9,7 +9,7 @@ notifications:
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: $GITHUB_TOKEN
+  github_token: $GITHUB_TOKEN1
   keep_history: true
   local_dir: dist
   
