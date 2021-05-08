@@ -16,7 +16,7 @@
 #vue-vuetify--admin-marvel
 
 ### DEMO
-![Product Gif](https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/vue-marvefl-gif.gif)
+![Product Gif](https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/vue-marvel-gif.gif)
 
 ### INTRODUÇÃO
 
