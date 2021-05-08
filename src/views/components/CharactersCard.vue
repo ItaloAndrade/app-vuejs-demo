@@ -2,7 +2,7 @@
 <v-container justify="center" fluid>
     <v-row>
         <v-col @mouseover="show = i;" @mouseout="show = false;" v-for="(card, i) in getMarvel.characters" :key="i"   class="something-i-need-to-animate">
-            <v-card class="pa-3 elevation-3 mt-10">
+            <v-card class="pa-3 elevation-3 mt-10" max-width="250px">
                 <div class="d-flex grow flex-wrap ">
                     <v-img :src="card.thumbnail.path + '.' + card.thumbnail.extension" class="elevation-23 head-card white--text align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="200px">
                     </v-img>
