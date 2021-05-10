@@ -19,8 +19,8 @@
 ![Product Gif](https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/vue-marvel-gif.gif)
 
 ### PRINTS SCREEN
-[<img src="https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/1.PNG" width="50%"></img>](http://google.com.au/)
-[<img src="https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/2.PNG" width="50%"></img>](http://google.com.au/)
+[<img src="https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/1.PNG" width="30%"></img>](http://google.com.au/)
+[<img src="https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/2.PNG" width="30%"></img>](http://google.com.au/)
 
 
 
