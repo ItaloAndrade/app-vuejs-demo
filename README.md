@@ -18,6 +18,13 @@
 ### DEMO
 ![Product Gif](https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/vue-marvel-gif.gif)
 
+### PRINTS SCREEN
+[<img src="https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/1.PNG" width="50%"></img>](http://google.com.au/)
+[<img src="https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/2.PNG" width="50%"></img>](http://google.com.au/)
+
+
+
+
 ### INTRODUÇÃO
 
 Mussum Ipsum, cacilds vidis litro abertis. Praesent malesuada urna nisi, quis volutpat erat hendrerit non. Nam vulputate dapibus. Mais vale um bebadis conhecidiss, que um alcoolatra anonimis. Todo mundo vê os porris que eu tomo, mas ninguém vê os tombis que eu levo! Interagi no mé, cursus quis, vehicula ac nisi.
