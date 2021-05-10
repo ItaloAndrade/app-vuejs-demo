@@ -24,18 +24,18 @@
   <tbody>
     <tr>
       <td> 
-          		<img src="https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/1.PNG"> 
+          		<img src="https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/1.jpeg"> 
       </td>
        <td> 
-          		<img src="https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/2.PNG"> 
+          		<img src="https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/2.jpeg"> 
       </td>
     </tr>
     <tr>
       <td> 
-          		<img src="https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/3.PNG"> 
+          		<img src="https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/3.jpeg"> 
       </td>
        <td> 
-          		<img src="https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/4.PNG"> 
+          		<img src="https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/4.jpeg"> 
       </td>
     </tr>
    </tbody>
