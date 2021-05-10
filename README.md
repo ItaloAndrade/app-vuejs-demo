@@ -19,10 +19,10 @@
 ![Product Gif](https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/vue-marvel-gif.gif)
 
 ### PRINTS SCREEN
-<p align="center">
-[<img src="https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/1.PNG" width="40%"></img>](http://google.com.au/)
-[<img src="https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/2.PNG" width="40%"></img>](http://google.com.au/)
-</p>
+ 
+[<img src="https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/1.PNG"  width="60" height="60" ></img>](http://google.com.au/)
+[<img src="https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/2.PNG"  width="60" height="60" ></img>](http://google.com.au/)
+ 
 
 
 ### INTRODUÇÃO
