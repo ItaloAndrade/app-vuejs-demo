@@ -27,7 +27,15 @@
           		<img src="https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/1.PNG"> 
       </td>
        <td> 
-          		<img src="https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/1.PNG"> 
+          		<img src="https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/2.PNG"> 
+      </td>
+    </tr>
+    <tr>
+      <td> 
+          		<img src="https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/3.PNG"> 
+      </td>
+       <td> 
+          		<img src="https://ui-flutter-git.s3-sa-east-1.amazonaws.com/app-vuejs-demo/4.PNG"> 
       </td>
     </tr>
    </tbody>
